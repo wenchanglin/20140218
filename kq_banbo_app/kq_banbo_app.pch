@@ -1,0 +1,47 @@
+//
+//  kq_banbo_app.pch
+//  kq_banbo_app
+//
+//  Created by hcy on 2016/11/23.
+//  Copyright © 2016年 yzChina. All rights reserved.
+//
+
+#ifndef kq_banbo_app_pch
+#define kq_banbo_app_pch
+#ifdef __OBJC__
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+
+#import <AFNetworking.h>
+
+#import "YZCommonMacros.h"
+#import "UIView+HCY.h"
+#import "DtMainNavigationController.h"
+#import "HCYUtil.h"
+#import "ConstDefines.h"
+#import <CocoaLumberjack/CocoaLumberjack.h>
+#import "YZLabelFactory.h"
+#import "InterfaceDefines.h"
+#import "YZErrorMaker+BanBo.h"
+#import "BanBoLayoutParam.h"
+#import "YZDateHelper.h"
+#import "BanBoErrorDefine.h"
+#import "YZCacheManager+PathHelp.h"
+#import "BanBoColumnHeaderMaker.h"
+#import "BanBoBtnMaker.h"
+#import <MJExtension.h>
+#import "YSHeader.h"
+#ifdef DEBUG
+static DDLogLevel ddLogLevel = DDLogLevelVerbose;
+#define HCYDEBUG YES
+//#define HCYCGV2 YES  //心电图第二版
+#else
+static DDLogLevel ddLogLevel = DDLogLevelInfo;
+#endif
+
+#endif
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#endif /* kq_banbo_app_pch */

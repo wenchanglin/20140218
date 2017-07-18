@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SchemeUserState</key>
+	<dict>
+		<key>kq_banbo_app sim.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>14</integer>
+		</dict>
+		<key>kq_banbo_app.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>0</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>2708FB381DE5860A0010071B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>2708FB511DE5860A0010071B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>2708FB5C1DE5860A0010071B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>2793751D1E2CA2E6000CC55E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+	</dict>
+</dict>
+</plist>

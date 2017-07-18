@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16E144f" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="BanBoCardiogramInfoView">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="183"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="您当前的心跳指数为:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="62s-Mq-vAE">
+                    <rect key="frame" x="107" y="18" width="161" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HR" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vhq-0p-SDo">
+                    <rect key="frame" x="175.5" y="53" width="23" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="爱心" translatesAutoresizingMaskIntoConstraints="NO" id="Fjy-LI-BIX">
+                    <rect key="frame" x="150" y="55.5" width="17" height="16"/>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(bpm)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XVw-2t-TUh">
+                    <rect key="frame" x="203.5" y="55" width="39" height="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lDV-J6-Tel">
+                    <rect key="frame" x="0.0" y="74" width="375" height="109"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jHM-bS-9DF">
+                            <rect key="frame" x="168" y="28" width="38.5" height="53"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="44"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="jHM-bS-9DF" firstAttribute="centerX" secondItem="lDV-J6-Tel" secondAttribute="centerX" id="Hja-Sf-xw1"/>
+                        <constraint firstItem="jHM-bS-9DF" firstAttribute="centerY" secondItem="lDV-J6-Tel" secondAttribute="centerY" id="UhU-kf-3fp"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="62s-Mq-vAE" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="3zp-5V-vVH"/>
+                <constraint firstItem="lDV-J6-Tel" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="4yc-ap-yiE"/>
+                <constraint firstItem="vhq-0p-SDo" firstAttribute="top" secondItem="62s-Mq-vAE" secondAttribute="bottom" constant="14" id="Azs-pK-Vxw"/>
+                <constraint firstItem="XVw-2t-TUh" firstAttribute="centerY" secondItem="vhq-0p-SDo" secondAttribute="centerY" id="DAK-Qs-BHz"/>
+                <constraint firstItem="vhq-0p-SDo" firstAttribute="centerX" secondItem="62s-Mq-vAE" secondAttribute="centerX" id="HdA-oH-1OS"/>
+                <constraint firstAttribute="bottom" secondItem="lDV-J6-Tel" secondAttribute="bottom" id="HwX-ma-HhJ"/>
+                <constraint firstItem="lDV-J6-Tel" firstAttribute="top" secondItem="vhq-0p-SDo" secondAttribute="bottom" id="IzV-wp-y4W"/>
+                <constraint firstItem="XVw-2t-TUh" firstAttribute="leading" secondItem="vhq-0p-SDo" secondAttribute="trailing" constant="5" id="KSX-P6-7aa"/>
+                <constraint firstItem="62s-Mq-vAE" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="18" id="Ma9-bV-Jg3"/>
+                <constraint firstItem="vhq-0p-SDo" firstAttribute="leading" secondItem="Fjy-LI-BIX" secondAttribute="trailing" constant="8" id="UyC-M9-K6n"/>
+                <constraint firstAttribute="trailing" secondItem="lDV-J6-Tel" secondAttribute="trailing" id="ZbP-Dr-Wu7"/>
+                <constraint firstItem="vhq-0p-SDo" firstAttribute="centerY" secondItem="Fjy-LI-BIX" secondAttribute="centerY" id="swp-t7-tm5"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="bpmLabel" destination="XVw-2t-TUh" id="r2b-Om-iv7"/>
+                <outlet property="cardiogramLabel" destination="jHM-bS-9DF" id="7WR-Uv-SS2"/>
+                <outlet property="fLabel" destination="62s-Mq-vAE" id="iKN-7w-867"/>
+                <outlet property="hrLabel" destination="vhq-0p-SDo" id="LLG-HZ-fXx"/>
+            </connections>
+            <point key="canvasLocation" x="26.5" y="-261.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="爱心" width="17" height="16"/>
+    </resources>
+</document>
