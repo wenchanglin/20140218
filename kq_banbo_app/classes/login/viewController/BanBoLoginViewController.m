@@ -32,7 +32,7 @@
     [self addTextFieldAndLoginInObs];
     
     // [self testData];
-//        [self switchRootVC:NO];
+//     [self switchRootVC:NO];
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear: animated];
