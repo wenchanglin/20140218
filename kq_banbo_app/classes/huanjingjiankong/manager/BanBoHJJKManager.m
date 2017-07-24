@@ -7,64 +7,53 @@
 //
 
 #import "BanBoHJJKManager.h"
-
+#import <AFNetworking.h>
+#import <AFHTTPSessionManager+Synchronous.h>
 @implementation BanBoHJJKManager
 -(void)postSheBeiListWithProject:(NSNumber *)projectid completion:(BanBoHJJKCompletionBlock)completion
 {
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    manager.responseSerializer = [AFJSONResponseSerializer serializer];
-    
-    
-    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
-    AFSecurityPolicy *securityPolicy = [AFSecurityPolicy defaultPolicy];
-    securityPolicy.allowInvalidCertificates = YES;
+    manager.securityPolicy.allowInvalidCertificates = YES;
+    manager.completionQueue = dispatch_queue_create("HuanJingListQueue", NULL);
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html",@"text/plain", nil];
-    manager.securityPolicy = securityPolicy;
-    NSString * string2 = [NSString stringWithFormat:@"%@/dhrtd/jsonDhEquipmentList.html",huanjingtou];
+    NSError * error = nil;
+    
+    NSString * string = [NSString stringWithFormat:@"%@/dhrtd/jsonDhEquipmentList.html",huanjingtou];
     NSDictionary * param = @{@"clientId":projectid};
-    [manager POST:string2 parameters:param progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-//        DDLogInfo(@"huanjing:%@",responseObject);
-        if([((NSNumber*)[responseObject objectForKey:@"code"]) intValue]==1)
-        {
-            NSDictionary * arr = responseObject[@"data"];
-            NSArray * arr2 = arr[@"dataList"];
-            completion(arr2,nil);
-        }
-        else if ([((NSNumber*)[responseObject objectForKey:@"code"]) intValue]==-1)
-        {
-            [HCYUtil showErrorWithStr:responseObject[@"message"]];
-        }
-
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-         DDLogInfo(@"huanjing错误:%@",error);
-    }];
+    NSDictionary * result = [manager syncPOST:string parameters:param task:NULL error:&error];
+    if([((NSNumber *)[result objectForKey:@"code"])intValue]==1) {
+        NSDictionary * arr = result[@"data"];
+        NSArray * arr2 = arr[@"dataList"];
+        completion(arr2,nil);
+    }
+    else if ([((NSNumber *)[result objectForKey:@"code"])intValue]==-1)
+    {
+        //completion(result[@"message"],nil);
+        [HCYUtil showErrorWithStr:result[@"message"]];
+    }
+    
 }
 -(void)posthuanJSShiDataWithSheBeiId:(NSNumber *)shibeiId completion:(BanBoHJJKCompletionBlock)completion
 {
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    manager.responseSerializer = [AFJSONResponseSerializer serializer];
-    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
-    AFSecurityPolicy *securityPolicy = [AFSecurityPolicy defaultPolicy];
-    securityPolicy.allowInvalidCertificates = YES;
+    AFHTTPSessionManager * manager = [AFHTTPSessionManager manager];
+    manager.securityPolicy.allowInvalidCertificates = YES;
+    manager.completionQueue = dispatch_queue_create("HuanJingShiShiQueue", NULL);
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html",@"text/plain", nil];
-    manager.securityPolicy = securityPolicy;
+    NSError * error = nil;
     NSString * string2 = [NSString stringWithFormat:@"%@/dhrtd/jsonDhRtd.html",huanjingtou];
     NSDictionary * param = @{@"equipmentId":shibeiId};
-    [manager POST:string2 parameters:param progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-       // DDLogInfo(@"huanjing:%@",responseObject);
-        if([((NSNumber *)[responseObject objectForKey:@"code"])intValue]==1)
-        {
-            NSDictionary * dict = responseObject[@"data"];
-            completion(dict,nil);
-        }
-        else if ([((NSNumber *)[responseObject objectForKey:@"code"])intValue]==-1)
-        {
-            
-           // [HCYUtil showErrorWithStr:responseObject[@"message"]];
-        }
+    NSDictionary * result = [manager syncPOST:string2 parameters:param task:NULL error:&error];
+    if([((NSNumber *)[result objectForKey:@"code"])intValue]==1)
+    {
+//        NSLog(@"环境实时数据:%@",result);
+        NSDictionary * dict = result[@"data"];
+        completion(dict,nil);
+    }
+    else if ([((NSNumber *)[result objectForKey:@"code"])intValue]==-1)
+    {
         
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        // DDLogInfo(@"huanjing错误:%@",error);
-    }];
+        //[HCYUtil showErrorWithStr:responseObject[@"message"]];
+    }
+    
 }
 @end

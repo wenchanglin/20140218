@@ -16,6 +16,8 @@
 #import "BanBoProject.h"
 #import "BanBoProjectMainViewController.h"
 #import "jsTextField.h"
+
+
 @interface BanBoLoginViewController ()<UITextFieldDelegate>
 @property (strong, nonatomic)  jsTextField *userNameField;
 @property (strong, nonatomic)  jsTextField *passwordField;
@@ -28,6 +30,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(autoLogin) name:BanBoTokenInvalidNotification object:nil];
     [self addImageView];
     [self addTextFieldAndLoginInObs];
     
@@ -39,6 +42,10 @@
     if ([UIApplication sharedApplication].statusBarStyle!=UIStatusBarStyleLightContent) {
         [UIApplication sharedApplication].statusBarStyle=UIStatusBarStyleLightContent;
     }
+}
+-(void)autoLogin
+{
+    [self loginBtnClicked:nil];
 }
 -(void)addImageView
 {
@@ -229,6 +236,7 @@
 }
 -(void)dealloc{
     DDLogError(@"loginVC-dealloc");
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
 }
 
 @end

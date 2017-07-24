@@ -1,6 +1,7 @@
 # Uncomment the next line to define a global platform for your project
 # platform :ios, '9.0'
 target 'kq_banbo_app' do
+pod 'AFNetworking-Synchronous/3.x'
 pod 'SDWebImage’
 pod 'Toast'
 pod 'AFNetworking'

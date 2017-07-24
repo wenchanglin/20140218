@@ -7,64 +7,53 @@
 //
 
 #import "BanBoTaDiaoManager.h"
-#import "YZHttpService.h"
-
+#import <AFHTTPSessionManager+Synchronous.h>
+#import <AFNetworking.h>
 @implementation BanBoTaDiaoManager
+
 -(void)postTaDiaoListWithProject:(NSNumber *)projectid completion:(BanBoTaDiaoCompletionBlock)completion
 {
     AFHTTPSessionManager * manager = [AFHTTPSessionManager manager];
-    manager.responseSerializer = [AFJSONResponseSerializer serializer];
-    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
-    AFSecurityPolicy *securityPolicy = [AFSecurityPolicy defaultPolicy];
-    securityPolicy.allowInvalidCertificates = YES;
+    manager.securityPolicy.allowInvalidCertificates = YES;
+    manager.completionQueue = dispatch_queue_create("TaDiaoListQueue", NULL);
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html",@"text/plain", nil];
-    manager.securityPolicy = securityPolicy;
+    NSError * error = nil;
     NSString * string = [NSString stringWithFormat:@"%@td/jsonListTowerCrane.html",huanjingtou];
     NSDictionary * param = @{@"clientId":projectid};
-    [manager POST:string parameters:param progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-       // DDLogInfo(@"塔吊ID:%@",responseObject);
-        if([((NSNumber*)[responseObject objectForKey:@"code"]) intValue]==1)
-        {
-            NSDictionary * arraay = responseObject[@"data"];
-            NSArray * sf = arraay[@"list"];
-//            DDLogInfo(@"塔吊ID:%@",sf);
-            completion(sf,nil);
-            
-        }
-        else if ([((NSNumber*)[responseObject objectForKey:@"code"]) intValue]==-1)
-        {
-          //  [HCYUtil showErrorWithStr:responseObject[@"message"]];
-        }
-        
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-       // DDLogInfo(@"塔吊ID错误:%@",error);
-    }];
+    NSDictionary * result = [manager syncPOST:string parameters:param task:NULL error:&error];
+    //NSLog(@"1:%@",result);
+    if([((NSNumber *)[result objectForKey:@"code"])intValue]==1) {
+        NSDictionary * arraay = result[@"data"];
+        NSArray * sf = arraay[@"list"];
+        completion(sf,nil);
+    }
+    else if ([((NSNumber *)[result objectForKey:@"code"])intValue]==-1)
+    {
+        //completion(result[@"message"],nil);
+        //[HCYUtil showErrorWithStr:responseObject[@"message"]];
+    }
 }
 -(void)postTaDiaoDataWithSheBeiId:(NSNumber *)shibeiId completion:(BanBoTaDiaoCompletionBlock)completion
 {
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    manager.responseSerializer = [AFJSONResponseSerializer serializer];
-    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
-    AFSecurityPolicy *securityPolicy = [AFSecurityPolicy defaultPolicy];
-    securityPolicy.allowInvalidCertificates = YES;
+    AFHTTPSessionManager * manager = [AFHTTPSessionManager manager];
+    manager.securityPolicy.allowInvalidCertificates = YES;
+    manager.completionQueue = dispatch_queue_create("TaDiaoShiShiQueue", NULL);
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html",@"text/plain", nil];
-    manager.securityPolicy = securityPolicy;
+    NSError * error = nil;
     NSString * string2 = [NSString stringWithFormat:@"%@td/jsonGetTowerCraneData.html",huanjingtou];
     NSDictionary * param = @{@"deviceId":shibeiId};
-    [manager POST:string2 parameters:param progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        if([((NSNumber *)[responseObject objectForKey:@"code"])intValue]==1)
-        {
-//           DDLogInfo(@"塔吊实时数据:%@",responseObject);
-            NSDictionary * dict = responseObject[@"data"];
-            completion(dict,nil);
-        }
-        else if ([((NSNumber *)[responseObject objectForKey:@"code"])intValue]==-1)
-        {
-            completion(responseObject[@"message"],nil);
-            //[HCYUtil showErrorWithStr:responseObject[@"message"]];
-        }
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-       //    DDLogInfo(@"塔吊实时数据错误:%@",error);
-    }];
+    NSDictionary * result = [manager syncPOST:string2 parameters:param task:NULL error:&error];
+    //NSLog(@"2:%@",result);
+    if([((NSNumber *)[result objectForKey:@"code"])intValue]==1)
+    {
+//         NSLog(@"塔吊实时数据:%@",result);
+        NSDictionary * dict = result[@"data"];
+        completion(dict,nil);
+    }
+    else if ([((NSNumber *)[result objectForKey:@"code"])intValue]==-1)
+    {
+        completion(result[@"message"],nil);
+        //[HCYUtil showErrorWithStr:responseObject[@"message"]];
+    }
 }
 @end

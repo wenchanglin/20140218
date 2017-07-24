@@ -29,6 +29,10 @@
 @property(nonatomic,strong)UILabel *  qingjiaoLabel;
 /**倾角数值*/
 @property(nonatomic,strong)UILabel *  obliqueityLabel;
+/**
+ 倾角度
+ */
+@property(nonatomic,strong)UILabel * qingjiaoduLabel;
 /**倍率*/
 @property(nonatomic,strong)UILabel * beilvLabel;
 /**倍率数值*/
@@ -37,10 +41,18 @@
 @property(nonatomic,strong)UILabel * zuidazaizhongLabel;
 /**载重数值*/
 @property(nonatomic,strong)UILabel * carryLabel;
+/**
+ 载重数值单位
+ */
+@property(nonatomic,strong)UILabel * carrydanweiLabel;
 /**最大幅度*/
 @property(nonatomic,strong)UILabel * zuidafuduLabel;
 /**幅度数值*/
 @property(nonatomic,strong)UILabel * extentLabel;
+/**
+ 幅度数值单位
+ */
+@property(nonatomic,strong)UILabel * extentdanweiLabel;
 /**塔吊名字*/
 @property(nonatomic,strong)UILabel * nameLabel;
 /**时间*/

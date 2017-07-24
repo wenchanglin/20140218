@@ -19,29 +19,152 @@
 }
 -(void)setDataWithIndexPath:(NSIndexPath *)indexpath withModel:(BanBoTaDiaoModel *)models withSheBeiModel:(BanBoTaDiaoSheBeiModel *)shebeimodel
 {
+    if(shebeimodel.status==nil||shebeimodel.status==NULL)
+    {
+        _TaDiaoStates.text = @"该塔吊不在线";
+    }
+    else
+    {
+        _TaDiaoStates.text = [NSString stringWithFormat:@"该塔吊%@",shebeimodel.status];
+    }
+    if (shebeimodel.cSim ==nil||shebeimodel.status == NULL) {
+        _phoneLabel.text = @"未插SIM卡";
+    }
+    else
+    {
+        _phoneLabel.text = [NSString stringWithFormat:@"%@",shebeimodel.cSim];
+    }
     
-    _TaDiaoStates.text = [NSString stringWithFormat:@"该塔吊%@",shebeimodel.status];
-    _phoneLabel.text = [NSString stringWithFormat:@"%@",shebeimodel.cSim];
-    _longitudeLabel.text = models.longitude;
-    _latitudeLabel.text = models.latitude;
-    _obliqueityLabel.text = [NSString stringWithFormat:@"%@度",models.wDip];
-    _multiplyLabel.text = [NSString stringWithFormat:@"%@",models.wRate];
-    _carryLabel.text = [NSString stringWithFormat:@"%@kg",models.wFRateVCode];//最大载重
-    _extentLabel.text = [NSString stringWithFormat:@"%@m",models.wFCodeVRate];//最大幅度
+    if(models.longitude ==nil||models.longitude==NULL)
+    {
+        _longitudeLabel.text = @"0";
+    }
+    else
+    {
+        _longitudeLabel.text = models.longitude;
+    }
+    if(models.latitude ==nil||models.latitude==NULL)
+    {
+        _latitudeLabel.text = @"0";
+    }
+    else
+    {
+        _latitudeLabel.text = models.latitude;
+    }
+    if(models.wDip ==nil||models.wDip==NULL)
+    {
+        _obliqueityLabel.text = @"0";
+    }
+    else
+    {
+        _obliqueityLabel.text = [NSString stringWithFormat:@"%@",models.wDip];//倾角数值
+    }
     
-    _nameLabel.text = shebeimodel.deviceNumber;
+    if(models.wRate ==nil||models.wRate==NULL)
+    {
+        _multiplyLabel.text = @"0";
+    }
+    else
+    {
+        _multiplyLabel.text = [NSString stringWithFormat:@"%@",models.wRate];//倍率
+        
+    }
+    
+    if(models.wFRateVCode ==nil||models.wFRateVCode==NULL)
+    {
+        _carryLabel.text = @"0";
+    }
+    else
+    {
+        _carryLabel.text = [NSString stringWithFormat:@"%@",models.wFRateVCode];//最大载重
+        
+    }
+    if(models.wFCodeVRate ==nil||models.wFCodeVRate==NULL)
+    {
+        _extentLabel.text = @"0";
+    }
+    else
+    {
+        _extentLabel.text = [NSString stringWithFormat:@"%@",models.wFCodeVRate];//最大幅度
+        
+    }
+    if(shebeimodel.deviceNumber ==nil||shebeimodel.deviceNumber==NULL)
+    {
+        _nameLabel.text = @"设备编号为空";
+    }
+    else
+    {
+        _nameLabel.text = [NSString stringWithFormat:@"%@",shebeimodel.deviceNumber];//设备编号
+    }
     
     _timeLabel.text = models.dateTime;
-    _bigArmLabel.text = [NSString stringWithFormat:@"%@",shebeimodel.forearm];
-    _balanceArmLabel.text = shebeimodel.balanceArm;
-    _lijuSubLabel.text = [NSString stringWithFormat:@"%@",models.wTorque];
-    
-    _zaizhongSubLabel.text = [NSString stringWithFormat:@"%@",models.wLoad];
-    _windSubLabel.text = [NSString stringWithFormat:@"%@",models.wWindvel];
-    _fuduSubLabel.text = [NSString stringWithFormat:@"%@",models.wMargin];
-    _gaoduSubLabel.text = [NSString stringWithFormat:@"%@",models.wHeight];
-    _jiaoduSubLabel.text = [NSString stringWithFormat:@"%@",models.dwRotate];
-    _lijuProgress.progress = [models.wTorque floatValue]/ [models.wFRateVCode floatValue]/[models.wFCodeVRate floatValue]*1000;
+    if (shebeimodel.forearm ==nil||shebeimodel.forearm==NULL) {
+        _bigArmLabel.text = @"0";
+    }else
+    {
+        _bigArmLabel.text = [NSString stringWithFormat:@"%@",shebeimodel.forearm];
+    }
+    if (shebeimodel.balanceArm == nil||shebeimodel.balanceArm==NULL) {
+        _balanceArmLabel.text = @"0";
+    }
+    else
+    {
+        _balanceArmLabel.text = shebeimodel.balanceArm;
+    }
+    if(models.wTorque==nil||models.wTorque==NULL)
+    {
+        _lijuSubLabel.text =@"0";
+    }
+    else
+    {
+        _lijuSubLabel.text = [NSString stringWithFormat:@"%@",models.wTorque];
+    }
+    if (models.wLoad==nil||models.wLoad==NULL)
+    {
+        _zaizhongSubLabel.text = @"0";
+    }else
+    {
+        _zaizhongSubLabel.text = [NSString stringWithFormat:@"%@",models.wLoad];
+    }
+    if (models.wWindvel==nil||models.wWindvel==NULL)
+    {
+        _windSubLabel.text = @"0";
+    }
+    else
+    {
+        _windSubLabel.text = [NSString stringWithFormat:@"%@",models.wWindvel];
+    }
+    if (models.wMargin==nil||models.wMargin==NULL) {
+        _fuduSubLabel.text =@"0";
+    }
+    else
+    {
+        _fuduSubLabel.text = [NSString stringWithFormat:@"%@",models.wMargin];
+    }
+    if (models.wHeight==nil||models.wHeight==NULL) {
+        _gaoduSubLabel.text =@"0";
+    }
+    else
+    {
+        _gaoduSubLabel.text = [NSString stringWithFormat:@"%@",models.wHeight];
+    }
+    if (models.dwRotate==nil||models.dwRotate==NULL) {
+        _jiaoduSubLabel.text =@"0";
+    }
+    else
+    {
+        _jiaoduSubLabel.text = [NSString stringWithFormat:@"%@",models.dwRotate];
+    }
+    if (models.wTorque==NULL||models.wFRateVCode==NULL||models.wFCodeVRate==NULL) {
+        _lijuProgress.progress = 0.0;
+    }
+    else
+    {
+        _lijuProgress.progress = [models.wTorque floatValue]/ [models.wFRateVCode floatValue]/[models.wFCodeVRate floatValue]*1000;
+    }
+    if (models.wLoad==NULL||models.wFRateVCode==NULL) {
+        _zaizhongProgress.progress = 0.0;
+    }
     _zaizhongProgress.progress = [models.wLoad floatValue]/[models.wFRateVCode floatValue];
     if ([models.wWindvel floatValue]>=20) {
         _windProgress.progress = 1;
@@ -50,18 +173,27 @@
     {
         _windProgress.progress = [models.wWindvel floatValue]/20;
     }
-    _fuduProgress.progress = [models.wMargin floatValue]/[models.wFCodeVRate floatValue];
-    DDLogDebug(@"sb:%f",[models.wHeight floatValue]/[shebeimodel.wheight floatValue]);
-    NSLog(@"%.1f:%.1f",[models.wHeight floatValue],[shebeimodel.wheight floatValue]);
-    if ([models.wHeight intValue]==0) {
-        _gaoduProgress.progress = 0;
+    if (models.wMargin==NULL||models.wFCodeVRate ==NULL) {
+        _fuduProgress.progress =0.0;
     }
     else
     {
-    _gaoduProgress.progress = [models.wHeight floatValue]/[shebeimodel.wheight intValue];
+        _fuduProgress.progress = [models.wMargin floatValue]/[models.wFCodeVRate floatValue];
     }
-    _jiaoduProgress.progress = [models.dwRotate floatValue]/360;
-    
+    if ([shebeimodel.wheight intValue]==0||[models.wHeight intValue]==0) {
+        _gaoduProgress.progress = 0.0;
+    }
+    else
+    {
+        _gaoduProgress.progress = [models.wHeight floatValue]/[shebeimodel.wheight intValue];
+    }
+    if (models.dwRotate==NULL) {
+        _jiaoduProgress.progress=0.0;
+    }
+    else
+    {
+        _jiaoduProgress.progress = [models.dwRotate floatValue]/360;
+    }
 }
 -(void)createUI
 {
@@ -97,15 +229,23 @@
         [self.contentView addSubview:_longitudeLabel];
         _latitudeLabel =[self createLabelwithFrame:CGRectMake(CGRectGetMaxX(_weiduLabel.frame)+40, CGRectGetMaxY(_longitudeLabel.frame)+1, _phoneLabel.width, 30) withFont:[YZLabelFactory bigFont] withTextColor:[UIColor hcy_colorWithString:@"#fda803"]];
         [self.contentView addSubview:_latitudeLabel];
-        _obliqueityLabel = [self createLabelwithFrame:CGRectMake(CGRectGetMaxX(_qingjiaoLabel.frame)+40, CGRectGetMaxY(_latitudeLabel.frame)+1, _phoneLabel.width, 30) withFont:[YZLabelFactory bigFont] withTextColor:[UIColor hcy_colorWithString:@"#fda803"]];
+        _obliqueityLabel = [self createLabelwithFrame:CGRectMake(CGRectGetMaxX(_qingjiaoLabel.frame)+40, CGRectGetMaxY(_latitudeLabel.frame)+1, 40, 30) withFont:[YZLabelFactory bigFont] withTextColor:[UIColor hcy_colorWithString:@"#fda803"]];
         [self.contentView addSubview:_obliqueityLabel];
+        _qingjiaoLabel = [self createLabelwithFrame:CGRectMake(CGRectGetMaxX(_obliqueityLabel.frame), CGRectGetMaxY(_latitudeLabel.frame)+1, 30, 30) withFont:[YZLabelFactory bigFont] withTextColor:[UIColor hcy_colorWithString:@"#333333"]];
+        _qingjiaoLabel.text = @"度";
+        [self.contentView addSubview:_qingjiaoLabel];
         _multiplyLabel =[self createLabelwithFrame:CGRectMake(CGRectGetMaxX(_beilvLabel.frame)+40, CGRectGetMaxY(_obliqueityLabel.frame)+1, _phoneLabel.width, 30) withFont:[YZLabelFactory bigFont] withTextColor:[UIColor hcy_colorWithString:@"#fda803"]];
         [self.contentView addSubview:_multiplyLabel];
-        _carryLabel = [self createLabelwithFrame:CGRectMake(CGRectGetMaxX(_zuidazaizhongLabel.frame)+20, CGRectGetMaxY(_multiplyLabel.frame)+1, 100, 30) withFont:[YZLabelFactory bigFont] withTextColor:[UIColor hcy_colorWithString:@"#fda803"]];
+        _carryLabel = [self createLabelwithFrame:CGRectMake(CGRectGetMaxX(_zuidazaizhongLabel.frame), CGRectGetMaxY(_multiplyLabel.frame)+1, 50, 30) withFont:[YZLabelFactory bigFont] withTextColor:[UIColor hcy_colorWithString:@"#fda803"]];
         [self.contentView addSubview:_carryLabel];
-        _extentLabel = [self createLabelwithFrame:CGRectMake(CGRectGetMaxX(_zuidafuduLabel.frame)+20, CGRectGetMaxY(_carryLabel.frame)+1, 100, 30) withFont:[YZLabelFactory bigFont] withTextColor:[UIColor hcy_colorWithString:@"#fda803"]];
+        _carrydanweiLabel = [self createLabelwithFrame:CGRectMake(CGRectGetMaxX(_carryLabel.frame), CGRectGetMaxY(_multiplyLabel.frame)+1, 30, 30) withFont:[YZLabelFactory bigFont] withTextColor:[UIColor hcy_colorWithString:@"#333333"]];
+        _carrydanweiLabel.text = @"kg";
+        [self.contentView addSubview:_carrydanweiLabel];
+        _extentLabel = [self createLabelwithFrame:CGRectMake(CGRectGetMaxX(_zuidafuduLabel.frame), CGRectGetMaxY(_carryLabel.frame)+1, 50, 30) withFont:[YZLabelFactory bigFont] withTextColor:[UIColor hcy_colorWithString:@"#fda803"]];
         [self.contentView addSubview:_extentLabel];
-        
+        _extentdanweiLabel = [self createLabelwithFrame:CGRectMake(CGRectGetMaxX(_extentLabel.frame), CGRectGetMaxY(_carryLabel.frame)+1, 30, 30) withFont:[YZLabelFactory bigFont] withTextColor:[UIColor hcy_colorWithString:@"#333333"]];
+        _extentdanweiLabel.text = @"m";
+        [self.contentView addSubview:_extentdanweiLabel];
     }
     else if (_indexpath.section==1)
     {

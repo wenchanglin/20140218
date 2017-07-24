@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>AFNetworking-Synchronous.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>AFNetworking.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -92,17 +97,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>1F307E2B818F9B052E834E4AFB6B044D</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>5498B0D5E25AEED8BBEFF965D21F1F4C</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>54AF83E9E496C1816E1F8E0700235148</key>
+		<key>3C47C8B57F13C24E2A130667F98988DB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -112,7 +107,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>7AA0EA4B3E5C3C9C02B2F7D92E255B77</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>7B7057E7DFD743CA214A3175196CDB89</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>8B1EDC1A89AB09A467A54C1DBC258E7C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>91C17B5EA23F78EFC5A5F2B6FEF45CA5</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -132,12 +142,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>ABC926135CB0A55AD3EC7DD01AD1503D</key>
+		<key>A6AE2EB927121DB69A1A0E55C2D65B5F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>CF42E25614EB27E80F14A657464D5E7E</key>
+		<key>A992F49ADF8402458B4287BC3743F7AF</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -147,7 +157,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F29A25BD549D6065A753032840159A6B</key>
+		<key>EC8988FAAFB4DB618E3CC96E47A35D97</key>
 		<dict>
 			<key>primary</key>
 			<true/>

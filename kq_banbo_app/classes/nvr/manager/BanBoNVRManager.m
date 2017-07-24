@@ -58,7 +58,7 @@
     NSMutableDictionary * param = [self param];
     [param setObject:projectId forKey:@"clientid"];
     [YZHttpService post2Addr:Inter_getYSSeriaNum params:param success:^(id responseObject) {
-        DDLogInfo(@"ys设备:%@",responseObject);
+        //DDLogInfo(@"ys设备:%@",responseObject);
         NSArray * aarray = responseObject[@"result"];
         if ([aarray[0] isKindOfClass:[NSString class]]) {
             [HCYUtil showProgressWithStr:aarray[0]];

@@ -23,15 +23,15 @@
     self.title = @"塔吊";
    
     _viewControllers = [NSMutableArray array];
-    [_tadiaoNameArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    for(int i=0;i<_tadiaoNameArray.count;i++){
         BanBoTaDiaoFatherViewController * tadiao  =[[BanBoTaDiaoFatherViewController alloc]init];
        
-        tadiao.models = _tadiaoSubArray[idx];
-        tadiao.shebeimodel = _shebeiArray[idx];
-        tadiao.taDiaoid = _listArray[idx];
+        tadiao.models = _tadiaoSubArray[i];
+        tadiao.shebeimodel = _shebeiArray[i];
+        tadiao.taDiaoid = _listArray[i];
          //DDLogInfo(@"%@,%@,%@,%@,index:%zd",_tadiaoNameArray,tadiao.models.wHeight,tadiao.shebeimodel.deviceName,tadiao.shebeimodel.wheight,idx);
         [_viewControllers addObject:tadiao];
-    }];
+     }
     self.pageTabView = [[XXPageTabView alloc]initWithChildControllers:_viewControllers childTitles:_tadiaoNameArray];
     self.pageTabView.frame = CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height-60);
     self.pageTabView.delegate = self;

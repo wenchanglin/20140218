@@ -19,7 +19,6 @@
 #import "UncaughtExceptionHandler.h"
 #import "BanBoErrorDefine.h"
 #import "YZHttpService.h"
-NSString *const BanBoTokenInvalidNotification=@"BanBoTokenInvalidNotification";
 @interface AppDelegate ()<YZHttpErrorExec,UIAlertViewDelegate>
 
 @end
@@ -164,6 +163,12 @@ extern NSString *const BanBoLogoutNotification;
         [[BanBoUserInfoManager sharedInstance] removeCache];
         [HCYUtil toastMsg:@"登录失效,请重新登录" inView:nil];
     }
+    else if ([notification.name isEqualToString:BanBoLogoutNotification])
+    {
+        [[NSUserDefaults standardUserDefaults]removeObjectForKey:@"username"];
+        [[NSUserDefaults standardUserDefaults]removeObjectForKey:@"password"];
+        
+    }
     [[NIMSingletonManager sharedManager] destroySingletonManager];
     BanBoLoginViewController * login = [[BanBoLoginViewController alloc]init];
     if (login) {
@@ -196,9 +201,9 @@ extern NSString *const BanBoLogoutNotification;
 }
 -(void)configHTTP{
     YZHttpServiceOption *option=[YZHttpServiceOption defaultOption];
-    
     option.urlStr=@"http://mapi.51zhgd.com/";
 //    option.urlStr=@"http://120.26.57.155:8888/kq_banbo_app/";
+//    option.urlStr=@"http://192.168.0.211:8080/kq_banbo_app/";
     option.responseType=YZHttpServiceTypeJson;
     option.successCodeKey=@"code"; 
     option.errorDescKey=@"resultDes";

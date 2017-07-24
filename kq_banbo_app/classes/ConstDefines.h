@@ -27,6 +27,6 @@
 
 #define BanBoViewBgGrayColor [UIColor hcy_colorWithRed:248 green:248 blue:248 alpha:1]
 
-
+#define BanBoTokenInvalidNotification @"BanBoTokenInvalidNotification"
 #define BanBoHomeSeparColor [UIColor hcy_colorWithRed:230 green:230 blue:230 alpha:1]
 #endif /* MacroDefines_h */

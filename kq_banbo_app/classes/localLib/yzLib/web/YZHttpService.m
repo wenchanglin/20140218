@@ -86,6 +86,7 @@ static YZHttpServiceOption *option;
            // DDLogInfo(@"Post-taskEnd:%@ param:%@ -withResp:%@",task.currentRequest.URL,params,responseObject);
             kCloseNet
             NSError *error=[self checkSuccessWithDict:responseObject];
+            
             if (!error) {
                 if (success) {
                     success(responseObject);

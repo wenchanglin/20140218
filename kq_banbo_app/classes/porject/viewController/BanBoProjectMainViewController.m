@@ -114,11 +114,9 @@
         {
             [_equipArray addObject:dicse[@"equipmentId"]];
             [_shebeiwuArray addObject:dicse[@"equipmentName"]];
-        }
-        [_equipArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            [[BanBoHJJKManager sharedInstance]posthuanJSShiDataWithSheBeiId:_equipArray[idx] completion:^(id data, NSError *error) {
+            [[BanBoHJJKManager sharedInstance]posthuanJSShiDataWithSheBeiId:dicse[@"equipmentId"] completion:^(id data, NSError *error) {
                 if ([data isKindOfClass:[NSString class]]) {
-                    NSDictionary * dci = @{@"equipmentName":_shebeiwuArray[idx],@"pm2p5Msg":@"优秀",@"pm10Msg":@"优秀",@"pm2p5":@"0",@"pm10":@"0",@"rtdId":@0,@"humi":@"0",@"tsp":@"0",@"temp":@"0",@"ws":@"0",@"wdir":@"0",@"atm":@"0",@"nvh":@"0",@"createTime":@"0",@"dataTime":@"0",@"equipmentId":_equipArray[idx],@"windScale":@"0",@"waring":@[]};
+                    NSDictionary * dci = @{@"equipmentName":dicse[@"equipmentName"],@"pm2p5Msg":@"优秀",@"pm10Msg":@"优秀",@"pm2p5":@"0",@"pm10":@"0",@"rtdId":@0,@"humi":@"0",@"tsp":@"0",@"temp":@"0",@"ws":@"0",@"wdir":@"0",@"atm":@"0",@"nvh":@"0",@"createTime":@"0",@"dataTime":@"0",@"equipmentId":dicse[@"equipmentId"],@"windScale":@"0",@"waring":@[]};
                     BanBoHuanJModel * models = [BanBoHuanJModel mj_objectWithKeyValues:dci];
                     [_huanjingRealArray addObject:models.equipmentId];
                     [_shebeiArray addObject:models.equipmentName];
@@ -131,11 +129,11 @@
                     [_huanjingRealArray addObject:model.equipmentId];
                     [_subArray addObject:model];
                 }
-                [weakself.dataTableView reloadData];
+                
             }];
-            
-        }];
-        
+           
+        }
+         [weakself.dataTableView reloadData];
     }];
 }
 #pragma mark - 获取塔吊数据
@@ -153,12 +151,9 @@
                 [_taDiaoListArray addObject:models.deviceId];
                 [_taDiaoSheBeiWuArray addObject:models.deviceName];
                 [_taDiaoSheBeiArray addObject:models];
-        }
-        
-        [_taDiaoListArray  enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            [[BanBoTaDiaoManager sharedInstance]postTaDiaoDataWithSheBeiId:_taDiaoListArray[idx] completion:^(id data, NSError *error) {
+            [[BanBoTaDiaoManager sharedInstance]postTaDiaoDataWithSheBeiId:models.deviceId completion:^(id data, NSError *error) {
                 if ([data isKindOfClass:[NSString class]]) {
-                    NSDictionary * dcis = @{@"recordName":_taDiaoSheBeiWuArray[idx],@"dateTime":@"无最新时间",@"deviceId":_taDiaoListArray[idx],@"dwRotate":@"0",@"latitude":@"0",@"longitude":@"0",@"wDip":@0,@"wHeight":@"0",@"wLoad":@"0",@"wMargin":@0,@"wRate":@0,@"wTorque":@0,@"recordNumber":@"0",@"wWindvel":@"0",@"wFCodeVRate":@0,@"wFRateVCode":@0};
+                    NSDictionary * dcis = @{@"recordName":models.deviceName,@"dateTime":@"无最新时间",@"deviceId":models.deviceId,@"dwRotate":@"0",@"latitude":@"0",@"longitude":@"0",@"wDip":@0,@"wHeight":@"0",@"wLoad":@"0",@"wMargin":@0,@"wRate":@0,@"wTorque":@0,@"recordNumber":@"0",@"wWindvel":@"0",@"wFCodeVRate":@0,@"wFRateVCode":@0};
                     BanBoTaDiaoModel * models = [BanBoTaDiaoModel mj_objectWithKeyValues:dcis];
                     [_taDiaoNameArray addObject:models.recordName];
                     [_taDiaoRealArray addObject:models.deviceId];
@@ -171,13 +166,13 @@
                     [_taDiaoNameArray addObject:model.recordName];
                     [_taDiaoRealArray addObject:model.deviceId];
                     [_TaDiaoSubArray addObject:model];
-                  
+                    
                 }
-                
-                [wself.dataTableView reloadData];
+              
             }];
-            
-        }];
+        }
+        
+         [wself.dataTableView reloadData];
     }];
     
 }

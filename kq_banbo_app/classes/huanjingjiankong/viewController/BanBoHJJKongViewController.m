@@ -21,14 +21,12 @@
     [super viewDidLoad];
     self.title = @"环境监控";
     _viewControllers = [NSMutableArray array];
-    [_array enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    for (int i=0; i<_array.count; i++) {
         BanBoHJJKFatherVC * vc = [[BanBoHJJKFatherVC alloc]init];
-        vc.modelsef  = _subArray[idx];
-        vc.HuanJid = _VCarray[idx];
+        vc.modelsef  = _subArray[i];
+        vc.HuanJid = _VCarray[i];
         [_viewControllers addObject:vc];
-    }];
-    
-    
+    }
     self.pageTabView = [[XXPageTabView alloc]initWithChildControllers:_viewControllers childTitles:_array];
     self.pageTabView.frame = CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height-60);
     self.pageTabView.delegate = self;

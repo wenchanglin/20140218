@@ -15,10 +15,11 @@
 #define AppID   @"1188196862"
 #define QingQiuTou @"http://mapi.51zhgd.com/"
 //#define QingQiuTou @"http://120.26.57.155:8888/kq_banbo_app/"
+//#define QingQiuTou @"http://192.168.0.211:8080/kq_banbo_app/"
 
 #define huanjingtou @"http://www.51zhgd.com/"
 //#define huanjingtou @"http://120.26.57.155:8888/zhgd_test/"//155测试
-//#define huanjingtou @"http://192.168.0.173:8080/zhihuigongdi/"
+//#define huanjingtou @"http://192.168.0.198:8080/zhihuigongdi/"
 #define Inter_Login                 @"user/login"   //登录
 //home 人数
 #define Inter_HomeTotal             @"home/getmaininfo"

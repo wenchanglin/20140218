@@ -14,7 +14,7 @@
 @property(nonatomic)NSString * dwRotate;
 @property(nonatomic,strong)NSString * latitude;
 @property(nonatomic,strong)NSString *longitude;
-@property(nonatomic)NSNumber * wDip;
+@property(nonatomic)NSString * wDip;
 @property(nonatomic)NSString * wHeight;
 @property(nonatomic)NSString * wLoad;
 @property(nonatomic)NSNumber * wMargin;
