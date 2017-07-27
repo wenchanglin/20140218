@@ -381,7 +381,7 @@
     NSLog(@"player: %@ didReceivedMessage: %d", player, (int)messageCode);
     if(messageCode == PLAYER_PLAYBACK_START)
     {
-         _timer = [XTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(stopPlay) userInfo:nil repeats:NO];
+         _timer = [XTimer scheduledTimerWithTimeInterval:60 target:self selector:@selector(stopPlay) userInfo:nil repeats:NO];
         _isPlaying = YES;
         [self.playButton setImage:[UIImage imageNamed:@"pause_sel"] forState:UIControlStateHighlighted];
         [self.playButton setImage:[UIImage imageNamed:@"pause"] forState:UIControlStateNormal];

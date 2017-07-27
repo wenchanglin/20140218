@@ -365,7 +365,7 @@
         [self.playButton setImage:[UIImage imageNamed:@"preview_stopplay_btn_sel"] forState:UIControlStateHighlighted];
         [self.playButton setImage:[UIImage imageNamed:@"preview_stopplay_btn"] forState:UIControlStateNormal];
         _isPlaying = YES;
-        _timer = [XTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(stopPlay) userInfo:nil repeats:NO];
+        _timer = [XTimer scheduledTimerWithTimeInterval:60 target:self selector:@selector(stopPlay) userInfo:nil repeats:NO];
         if (!_isOpenSound)
         {
             [_player closeSound];
