@@ -68,7 +68,7 @@
     _deviceList = [NSMutableArray array];
     _shebeiNum = [NSMutableArray array];
     __weak typeof(self) wself=self;
-    NSLog(@"%zd",self.project.projectId);
+    NSLog(@"工地id%@",self.project.projectId);
      [self getSerinalNum];
     [[BanBoNVRManager sharedInstance] getYSNVRInfoWithProject:self.project.projectId completion:^(NSString* token, NSError *error) {
         if (!wself) {

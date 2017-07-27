@@ -279,6 +279,7 @@
 		55561DE61EFCB37800BDD45E /* BanBoVRImageHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 55561DE51EFCB37800BDD45E /* BanBoVRImageHeaderView.m */; };
 		55561DE91EFCF88F00BDD45E /* BanBoVRTJCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 55561DE81EFCF88F00BDD45E /* BanBoVRTJCell.m */; };
 		555C7BDC1EFBC17E00CEAC03 /* BanBoVRPeiXunVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 555C7BDB1EFBC17E00CEAC03 /* BanBoVRPeiXunVC.m */; };
+		555CCF6C1F2748EE0038520E /* XTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 555CCF6B1F2748EE0038520E /* XTimer.m */; };
 		5570A1BD1F01FDC4006753C0 /* BanBoVRTongJiModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5570A1BC1F01FDC4006753C0 /* BanBoVRTongJiModel.m */; };
 		557B6D8F1F009A4A00E0AE1D /* BanBoPeiXunHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 557B6D8E1F009A4A00E0AE1D /* BanBoPeiXunHeaderView.m */; };
 		557B6D921F009CAE00E0AE1D /* BanBoVRCondiView.m in Sources */ = {isa = PBXBuildFile; fileRef = 557B6D911F009CAE00E0AE1D /* BanBoVRCondiView.m */; };
@@ -840,6 +841,8 @@
 		55561DE81EFCF88F00BDD45E /* BanBoVRTJCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BanBoVRTJCell.m; sourceTree = "<group>"; };
 		555C7BDA1EFBC17E00CEAC03 /* BanBoVRPeiXunVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BanBoVRPeiXunVC.h; sourceTree = "<group>"; };
 		555C7BDB1EFBC17E00CEAC03 /* BanBoVRPeiXunVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BanBoVRPeiXunVC.m; sourceTree = "<group>"; };
+		555CCF6A1F2748EE0038520E /* XTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XTimer.h; sourceTree = "<group>"; };
+		555CCF6B1F2748EE0038520E /* XTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XTimer.m; sourceTree = "<group>"; };
 		5570A1BB1F01FDC4006753C0 /* BanBoVRTongJiModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BanBoVRTongJiModel.h; sourceTree = "<group>"; };
 		5570A1BC1F01FDC4006753C0 /* BanBoVRTongJiModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BanBoVRTongJiModel.m; sourceTree = "<group>"; };
 		557B6D8D1F009A4A00E0AE1D /* BanBoPeiXunHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BanBoPeiXunHeaderView.h; sourceTree = "<group>"; };
@@ -1938,6 +1941,7 @@
 			children = (
 				278F45AF1E6ED5A1006F0548 /* EZLivePlayViewController.h */,
 				278F45B01E6ED5A1006F0548 /* EZLivePlayViewController.m */,
+				555CCF691F2748EE0038520E /* XTimer */,
 			);
 			path = realplay;
 			sourceTree = "<group>";
@@ -2351,6 +2355,15 @@
 				55D08A521F03972E00652F13 /* BanBoVRXQYTwoJiVC.m */,
 			);
 			path = viewController;
+			sourceTree = "<group>";
+		};
+		555CCF691F2748EE0038520E /* XTimer */ = {
+			isa = PBXGroup;
+			children = (
+				555CCF6A1F2748EE0038520E /* XTimer.h */,
+				555CCF6B1F2748EE0038520E /* XTimer.m */,
+			);
+			path = XTimer;
 			sourceTree = "<group>";
 		};
 		557B6D9C1F00FCC800E0AE1D /* model */ = {
@@ -2945,6 +2958,7 @@
 				278F45BB1E6ED5A1006F0548 /* UIView+DDKit.m in Sources */,
 				27632A9A1E5ACDFC00AA80A8 /* BanBoCardNumberView.m in Sources */,
 				27632A601E5ACDFC00AA80A8 /* BadgeView.m in Sources */,
+				555CCF6C1F2748EE0038520E /* XTimer.m in Sources */,
 				27632AA71E5ACDFC00AA80A8 /* BanBoShiminCondiView.m in Sources */,
 				27632A541E5ACDFC00AA80A8 /* BanBoHealthInfoCollectViewController+SubClassFactory.m in Sources */,
 				278F45C61E6ED5A1006F0548 /* EZSettingViewController.m in Sources */,

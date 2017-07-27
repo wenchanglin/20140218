@@ -89,6 +89,8 @@
     _taDiaoSheBeiArray = [NSMutableArray array];
     _huanjingRealArray = [NSMutableArray array];
     _taDiaoRealArray = [NSMutableArray array];
+    [self getTaDiaoData];
+    [self getHuanJingData];
     [self setupSubviews];
     [self cleanCache];
     self.needRefreshDetail=YES;
@@ -226,8 +228,8 @@
     [super viewWillAppear:animated];
     [self restartTimer];
     self.navigationController.interactivePopGestureRecognizer.enabled=YES;
-    [self getTaDiaoData];
-    [self getHuanJingData];
+//    [self getTaDiaoData];
+//    [self getHuanJingData];
     
 }
 -(void)viewDidDisappear:(BOOL)animated{
@@ -357,6 +359,7 @@
 -(void)logoutBtnClick:(UIButton *)btn{
     [[BanBoUserInfoManager sharedInstance] logoutWithCompletion:nil];
     [[NSUserDefaults standardUserDefaults]removeObjectForKey:@"username"];
+    [[NSUserDefaults standardUserDefaults]removeObjectForKey:@"password"];
 }
 #pragma mark - 中间按钮delegate
 -(void)popMenuView:(HyPopMenuView *)popMenuView didSelectItemAtIndex:(NSUInteger)index

@@ -28,7 +28,7 @@
         _TaDiaoStates.text = [NSString stringWithFormat:@"该塔吊%@",shebeimodel.status];
     }
     if (shebeimodel.cSim ==nil||shebeimodel.status == NULL) {
-        _phoneLabel.text = @"未插SIM卡";
+        _phoneLabel.text = @"未插入SIM卡";
     }
     else
     {

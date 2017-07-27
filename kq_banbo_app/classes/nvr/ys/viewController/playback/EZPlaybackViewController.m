@@ -20,7 +20,7 @@
 #import "Masonry.h"
 #import "EZCameraInfo.h"
 #import "MBProgressHUD.h"
-
+#import "XTimer.h"
 @interface EZPlaybackViewController ()<DDCollectionViewDelegateFlowLayout, UICollectionViewDataSource,EZPlayerDelegate, UIAlertViewDelegate>
 {
     BOOL _isOpenSound;
@@ -33,7 +33,7 @@
     EZCloudRecordFile *_cloudRecord;
     
     BOOL _isShowToolbox;
-    
+    XTimer * _timer;
 //    BOOL _isDoBack;
 }
 
@@ -69,6 +69,7 @@
 @property (nonatomic, weak) IBOutlet UIImageView *noVideoImageView;
 @property (nonatomic, weak) IBOutlet UILabel *noVideoLabel;
 @property (nonatomic, strong) NSOperation *operation;
+@property (strong, nonatomic) UIButton *playBackButtons;
 
 @end
 
@@ -78,6 +79,25 @@
 {
     NSLog(@"%@ dealloc", self.class);
     [EZOPENSDK releasePlayer:_player];
+    [_timer invalidate];
+}
+-(void)stopPlay
+{
+    [_timer invalidate];
+    [_player pausePlayback];
+    [_playerView setBackgroundColor:[UIColor blackColor]];
+    [self.loadingView stopSquareClockwiseAnimation];
+    self.playBackButtons.hidden = NO;
+    [self.playButton setImage:[UIImage imageNamed:@"preview_play_btn_sel"] forState:UIControlStateHighlighted];
+    [self.playButton setImage:[UIImage imageNamed:@"preview_play_btn"] forState:UIControlStateNormal];
+    if(_playbackTimer && !_isSelectedDevice)
+    {
+        [_playbackTimer invalidate];
+        _playbackTimer = nil;
+    }
+    
+    _isPlaying = NO;
+    
 }
 
 - (void)viewDidLoad {
@@ -89,7 +109,6 @@
     
     if(!_records)
         _records = [NSMutableArray new];
-    
     DDCollectionViewFlowLayout *flowLayout = [[DDCollectionViewFlowLayout alloc] init];
     flowLayout.delegate = self;
     [self.playbackList setCollectionViewLayout:flowLayout];
@@ -107,7 +126,16 @@
         NSString *verifyCode = [[GlobalKit shareKit].deviceVerifyCodeBySerial objectForKey:cameraInfo.deviceSerial];
         [_player setPlayVerifyCode:verifyCode];
     }
-    
+    _playBackButtons = [[UIButton alloc]init];
+    [_playBackButtons setImage:[UIImage imageNamed:@"play"] forState:UIControlStateNormal];
+    [_playBackButtons addTarget:self action:@selector(playButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view insertSubview:_playBackButtons aboveSubview:self.playerView];
+    [_playBackButtons mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.height.mas_equalTo(45);
+        make.centerX.mas_equalTo(self.playerView.mas_centerX);
+        make.centerY.mas_equalTo(self.playerView.mas_centerY);
+    }];
+    _playBackButtons.hidden = YES;
     if(!_loadingView)
         _loadingView = [[HIKLoadView alloc] initWithHIKLoadViewStyle:HIKLoadViewStyleSqureClockWise];
     [self.view insertSubview:_loadingView aboveSubview:self.playerView];
@@ -139,17 +167,27 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
     
-    if (self.playbackTimer)
-    {
-        [self.playbackTimer invalidate];
-        self.playbackTimer = nil;
-    }
+//    if (self.playbackTimer)
+//    {
+//        [self.playbackTimer invalidate];
+//        self.playbackTimer = nil;
+//    }
     [self.loadingView stopSquareClockwiseAnimation];
     [_player closeSound];
     [_player stopPlayback];
     [super viewWillDisappear:animated];
 }
-
+-(void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    [_timer invalidate];
+    [_playbackList removeFromSuperview];
+    if (self.playbackTimer)
+    {
+        [self.playbackTimer invalidate];
+        self.playbackTimer = nil;
+    }
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -343,6 +381,7 @@
     NSLog(@"player: %@ didReceivedMessage: %d", player, (int)messageCode);
     if(messageCode == PLAYER_PLAYBACK_START)
     {
+         _timer = [XTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(stopPlay) userInfo:nil repeats:NO];
         _isPlaying = YES;
         [self.playButton setImage:[UIImage imageNamed:@"pause_sel"] forState:UIControlStateHighlighted];
         [self.playButton setImage:[UIImage imageNamed:@"pause"] forState:UIControlStateNormal];
@@ -423,7 +462,7 @@
                                                              beginTime:weakSelf.beginTime
                                                                endTime:weakSelf.endTime
                                                             completion:^(NSArray *deviceRecords, NSError *error) {
-                                                                NSLog(@"deviceRecords is %@, error is %@", deviceRecords, error);
+                                                               // NSLog(@"deviceRecords is %@, error is %@", deviceRecords, error);
                                                                 if (!error)
                                                                 {
                                                                     [weakSelf.records removeAllObjects];
@@ -456,7 +495,7 @@
                                                              beginTime:weakSelf.beginTime
                                                                endTime:weakSelf.endTime
                                                             completion:^(NSArray *cloudRecords, NSError *error) {
-                                                                NSLog(@"cloudRecords is %@, error is %@", cloudRecords, error);
+                                                              //  NSLog(@"cloudRecords is %@, error is %@", cloudRecords, error);
                                                                 if (error)
                                                                 {
                                                                     [UIView dd_showMessage:[NSString stringWithFormat:@"error code is %d",(int) error.code] onParentView:self.view];
@@ -563,6 +602,8 @@
 {
     if(_isPlaying)
     {
+        self.playBackButtons.hidden = NO;
+        [_timer invalidate];
         [_player pausePlayback];
         [self.playButton setImage:[UIImage imageNamed:@"preview_play_btn_sel"] forState:UIControlStateHighlighted];
         [self.playButton setImage:[UIImage imageNamed:@"preview_play_btn"] forState:UIControlStateNormal];
@@ -574,6 +615,7 @@
     }
     else
     {
+        self.playBackButtons.hidden = YES;
         [_player resumePlayback];
         [self.playButton setImage:[UIImage imageNamed:@"pause_sel"] forState:UIControlStateHighlighted];
         [self.playButton setImage:[UIImage imageNamed:@"pause"] forState:UIControlStateNormal];

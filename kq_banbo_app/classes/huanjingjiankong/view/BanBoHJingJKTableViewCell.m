@@ -53,8 +53,6 @@
         [_pm1ZShiBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [self.contentView addSubview:_pm1ZShiBtn];
         
-        
-        
     }
     else if (indexpath.row==1)
     {

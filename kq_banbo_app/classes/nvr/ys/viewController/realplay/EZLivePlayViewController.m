@@ -17,7 +17,7 @@
 #import "HIKLoadView.h"
 #import "MBProgressHUD.h"
 #import "EZCameraInfo.h"
-
+#import "XTimer.h"
 
 @interface EZLivePlayViewController ()<EZPlayerDelegate, UIAlertViewDelegate>
 {
@@ -73,6 +73,7 @@
 @property (nonatomic, weak) MBProgressHUD *voiceHud;
 @property (nonatomic, strong) EZCameraInfo *cameraInfo;
 
+@property(strong,nonatomic)XTimer *timer;
 
 
 @end
@@ -84,28 +85,47 @@
     NSLog(@"%@ dealloc", self.class);
     [EZOPENSDK releasePlayer:_player];
     [EZOPENSDK releasePlayer:_talkPlayer];
+    [_timer invalidate];
+}
+-(void)stopPlay
+{
+   // [_timer stop];
+    [_timer invalidate];
+    [_player stopRealPlay];
+    [_loadingView stopSquareClockwiseAnimation];
+    [_playerView setBackgroundColor:[UIColor blackColor]];
+    [self.playButton setImage:[UIImage imageNamed:@"preview_play_btn_sel"] forState:UIControlStateHighlighted];
+    [self.playButton setImage:[UIImage imageNamed:@"preview_play_btn"] forState:UIControlStateNormal];
+    self.localRecordButton.enabled = NO;
+    self.captureButton.enabled = NO;
+    self.playerPlayButton.hidden = NO;
+    _isPlaying = NO;
+ 
+}
+
+-(void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    [self stopTimer];
+}
+-(void)stopTimer{
+
+    [_timer invalidate];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     self.title = _deviceInfo.deviceName;
     self.largeTitleLabel.text = self.title;
-    
     self.isAutorotate = YES;
     self.isStartingTalk = NO;
     self.ptzView.hidden = YES;
     self.talkView.hidden = YES;
-    
+   
     self.talkButton.enabled = self.deviceInfo.isSupportTalk;
     self.controlButton.enabled = self.deviceInfo.isSupportPTZ;
     self.captureButton.enabled = NO;
     self.localRecordButton.enabled = NO;
-    
-//    _url = @"rtsp://183.136.184.33:8554/demo://544542032:1:1:1:0:183.136.184.7:6500";
-    
-//    _url = @"ysproto://122.225.228.217:8554/live?dev=501694318&chn=1&stream=2&cln=1&isp=0&biz=3";
-    
     if (_url)
     {
         _player = [EZOPENSDK createPlayerWithUrl:_url];
@@ -135,7 +155,7 @@
     {
         //抓图接口演示代码
         [EZOPENSDK captureCamera:_cameraInfo.deviceSerial cameraNo:_cameraInfo.cameraNo completion:^(NSString *url, NSError *error) {
-            NSLog(@"[%@] capture cameraNo is [%d] url is %@, error is %@", _cameraInfo.deviceSerial, (int)_cameraInfo.cameraNo, url, error);
+           // DDLogInfo(@"[%@] capture cameraNo is [%d] url is %@, error is %@", _cameraInfo.deviceSerial, (int)_cameraInfo.cameraNo, url, error);
         }];
     }
 #endif
@@ -201,31 +221,17 @@
     }
     
     [_player stopRealPlay];
-
-    NSLog(@"viewWillDisappear");
     [super viewWillDisappear:animated];
 }
 
-- (void)viewDidDisappear:(BOOL)animated
-{
-    NSLog(@"viewDidDisappear");
-    [super viewDidDisappear:animated];
-}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations
 {
@@ -349,6 +355,7 @@
 - (void)player:(EZPlayer *)player didReceivedMessage:(NSInteger)messageCode
 {
     NSLog(@"player: %@, didReceivedMessage: %d", player, (int)messageCode);
+   
     if (messageCode == PLAYER_REALPLAY_START)
     {
         self.captureButton.enabled = YES;
@@ -358,7 +365,7 @@
         [self.playButton setImage:[UIImage imageNamed:@"preview_stopplay_btn_sel"] forState:UIControlStateHighlighted];
         [self.playButton setImage:[UIImage imageNamed:@"preview_stopplay_btn"] forState:UIControlStateNormal];
         _isPlaying = YES;
-        
+        _timer = [XTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(stopPlay) userInfo:nil repeats:NO];
         if (!_isOpenSound)
         {
             [_player closeSound];
@@ -383,6 +390,7 @@
                          completion:^(BOOL finished) {
                          }];
     }
+    
     else if (messageCode == PLAYER_VOICE_TALK_END)
     {
         //对讲结束开启声音
@@ -463,7 +471,10 @@
 {
     if(_isPlaying)
     {
+        [_timer invalidate];
+//        [_timer stop];
         [_player stopRealPlay];
+        [self.loadingView stopSquareClockwiseAnimation];
         [_playerView setBackgroundColor:[UIColor blackColor]];
         [self.playButton setImage:[UIImage imageNamed:@"preview_play_btn_sel"] forState:UIControlStateHighlighted];
         [self.playButton setImage:[UIImage imageNamed:@"preview_play_btn"] forState:UIControlStateNormal];
@@ -473,6 +484,8 @@
     }
     else
     {
+        
+
         [_player startRealPlay];
         self.playerPlayButton.hidden = YES;
          [self.loadingView startSquareClcokwiseAnimation];

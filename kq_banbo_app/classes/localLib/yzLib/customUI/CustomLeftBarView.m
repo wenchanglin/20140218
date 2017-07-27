@@ -38,9 +38,7 @@
     leftButton.titleLabel.font=[UIFont systemFontOfSize:[UIFont systemFontSize]];
     leftButton.exclusiveTouch = YES;
     //嫌弃相应范围小
-    [leftButton addTarget:self
-                       action:@selector(onLeftButtonPressed:)
-             forControlEvents:UIControlEventTouchUpInside];
+    [leftButton addTarget:self action:@selector(onLeftButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     [leftButton sizeToFit];
     self.frame = CGRectMake(0,20,leftButton.width, 44.0);
     leftButton.centerY=self.height*.5;

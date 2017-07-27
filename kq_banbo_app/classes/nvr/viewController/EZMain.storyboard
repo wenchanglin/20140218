@@ -1236,7 +1236,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="600" y="1701"/>
+            <point key="canvasLocation" x="665" y="1401"/>
         </scene>
         <!--Message List View Controller-->
         <scene sceneID="La1-sv-OP4">
