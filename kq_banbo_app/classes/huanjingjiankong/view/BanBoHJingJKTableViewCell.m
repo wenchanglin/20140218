@@ -106,7 +106,7 @@
     {
         _windSpeedLabel.text =[NSString stringWithFormat:@"风速:%@",_models.windScale];
         _windDirectionLabel.text = [NSString stringWithFormat:@"风向:%@",_models.wdir];
-       
+        
     }
     else if (indexpath.row==5)
     {
@@ -135,11 +135,11 @@
         _pm10Image = [self initsdImageViewFrame:CGRectMake(15, 10, 26, 26) withImageName:@"PM101"];
         [self.contentView addSubview:_pm10Image];
         _pm10Label = [self initsdLabelFrame:CGRectMake(CGRectGetMaxX(_pm10Image.frame)+1, 10, SCREEN_WIDTH-37, 26)];
-         [self.contentView addSubview:_pm10Label];
+        [self.contentView addSubview:_pm10Label];
         _youBiao500 = [[UIImageView alloc]initWithFrame:CGRectMake(20, CGRectGetMaxY(_pm10Image.frame)+30, SCREEN_WIDTH-40, 30)];
         _youBiao500.image = [UIImage imageNamed:@"600刻度"];
         [self.contentView addSubview:_youBiao500];
-        }
+    }
     else if (_indepath.row==2)
     {
         _tspImage = [self initsdImageViewFrame:CGRectMake(15, 10, 26, 26) withImageName:@"TSP1"];
@@ -170,7 +170,7 @@
         [self.contentView addSubview:_windDirectionImage];
         _windDirectionLabel = [self initsdLabelFrame:CGRectMake(CGRectGetMaxX(_windDirectionImage.frame)+1, 10, SCREEN_WIDTH/2-37, 26)];
         [self.contentView addSubview:_windDirectionLabel];
-       
+        
     }
     else if (_indepath.row==5)
     {
@@ -186,10 +186,10 @@
         [self.contentView addSubview:_noiseImage];
         _noiseLabel = [self initsdLabelFrame:CGRectMake(CGRectGetMaxX(_noiseImage.frame)+1, 10, SCREEN_WIDTH-20, 26)];
         [self.contentView addSubview:_noiseLabel];
-       
+        
     }
     
-   
+    
 }
 #pragma mark - 封装图片
 

@@ -370,8 +370,6 @@
         addRecordBtn.right=topView.width-20;
         addRecordBtn.centerY=todayCountView.height*.5;
         [todayCountView addSubview:addRecordBtn];
-        
-        
         topView.height=todayCountView.bottom;
         
         _topView=topView;

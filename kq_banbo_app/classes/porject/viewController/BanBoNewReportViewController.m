@@ -56,7 +56,6 @@
     BanBoImageHeaderView *header=[BanBoImageHeaderView new];
     header.top=64;
     header.text=[NSString stringWithFormat:@"%@录入信息",self.project.name];
-    
     [self.view addSubview:header];
     
     BanBoNewReportView *reportTopView=[[BanBoNewReportView alloc] initWithFrame:CGRectMake(0, header.bottom, self.view.width, 1000)];
@@ -164,7 +163,7 @@
 }
 -(void)saveReport:(NSString *)fileUrl{
     NSMutableDictionary *param=[NSMutableDictionary dictionary];
-   [param addEntriesFromDictionary:self.info.param];
+    [param addEntriesFromDictionary:self.info.param];
     [param setObject:@(self.reportView.groupId) forKey:@"GroupId"];
     [param setObject:@(self.reportView.subGroupId) forKey:@"SubGroupId"];
     [param setObject:fileUrl forKey:@"FilePath"];

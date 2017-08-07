@@ -71,7 +71,7 @@
 -(instancetype)initWithProject:(BanBoProject *)project{
     if (self=[super init]) {
         _project=project;
-        //  DDLogInfo(@"工程id:%@-mingzi:%@",_project.projectId,_project.name);
+          DDLogInfo(@"工程id:%@-mingzi:%@",_project.projectId,_project.name);
     }
     return self;
 }
@@ -125,7 +125,8 @@
                     [_subArray addObject:models];
                     
                 }
-                else{
+                else
+                {
                     BanBoHuanJModel * model = [BanBoHuanJModel mj_objectWithKeyValues:data];
                     [_shebeiArray addObject:model.equipmentName];
                     [_huanjingRealArray addObject:model.equipmentId];
@@ -249,6 +250,8 @@
 -(void)refreshDataWithTimer:(NSTimer *)timer{
     [self getTotalData];
     [self getDetailData];
+    [self getTaDiaoData];
+    [self getHuanJingData];
 }
 -(void)stopTimer{
     if (self.timer) {
@@ -537,7 +540,6 @@
         yestCountLabel.top=nowCountLabel.top;
         [topView addSubview:yestCountLabel];
         self.yestCountLabel=yestCountLabel;
-        
         _topView=topView;
     }
     return _topView;

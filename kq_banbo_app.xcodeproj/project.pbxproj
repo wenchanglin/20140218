@@ -206,18 +206,6 @@
 		278F46161E6F9636006F0548 /* DALabeledCircularProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 278F46141E6F9636006F0548 /* DALabeledCircularProgressView.m */; };
 		278F46191E6F9676006F0548 /* NSDate-Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 278F46181E6F9676006F0548 /* NSDate-Utilities.m */; };
 		278F462E1E7678B4006F0548 /* BanBoHealthResultView.m in Sources */ = {isa = PBXBuildFile; fileRef = 278F462D1E7678B4006F0548 /* BanBoHealthResultView.m */; };
-		279375931E2CA2E6000CC55E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2708FB401DE5860A0010071B /* AppDelegate.m */; };
-		279375C91E2CA2E6000CC55E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2708FB3D1DE5860A0010071B /* main.m */; };
-		279375D71E2CA2E6000CC55E /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27A44D821E10A34400F7213B /* AVFoundation.framework */; };
-		279375D81E2CA2E6000CC55E /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27A44D801E10A33500F7213B /* OpenGLES.framework */; };
-		279375D91E2CA2E6000CC55E /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27A44D7E1E10A32E00F7213B /* CoreTelephony.framework */; };
-		279375DA1E2CA2E6000CC55E /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27A44D7C1E10A32A00F7213B /* CoreMotion.framework */; };
-		279375DB1E2CA2E6000CC55E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 278E79E71DE592AC00943179 /* SystemConfiguration.framework */; };
-		279375DC1E2CA2E6000CC55E /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 278E79EB1DE592C400943179 /* CoreBluetooth.framework */; };
-		279375DD1E2CA2E6000CC55E /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 278E79E91DE592B800943179 /* libz.tbd */; };
-		279375DF1E2CA2E6000CC55E /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 278E79E51DE592A500943179 /* libstdc++.tbd */; };
-		279375EC1E2CA2E6000CC55E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2708FB481DE5860A0010071B /* Assets.xcassets */; };
-		279375EF1E2CA2E6000CC55E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2708FB451DE5860A0010071B /* Main.storyboard */; };
 		27A37D2E1E5E6C44007B4DCE /* 血压背景.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 27A37D2D1E5E6C44007B4DCE /* 血压背景.jpg */; };
 		27A44D7B1E10A31D00F7213B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 278E79E71DE592AC00943179 /* SystemConfiguration.framework */; };
 		27A44D7D1E10A32A00F7213B /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27A44D7C1E10A32A00F7213B /* CoreMotion.framework */; };
@@ -731,7 +719,6 @@
 		278F46181E6F9676006F0548 /* NSDate-Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate-Utilities.m"; sourceTree = "<group>"; };
 		278F462C1E7678B4006F0548 /* BanBoHealthResultView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BanBoHealthResultView.h; sourceTree = "<group>"; };
 		278F462D1E7678B4006F0548 /* BanBoHealthResultView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BanBoHealthResultView.m; sourceTree = "<group>"; };
-		279375FC1E2CA2E6000CC55E /* kq_banbo_app-sim.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "kq_banbo_app-sim.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		27A37D2D1E5E6C44007B4DCE /* 血压背景.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "血压背景.jpg"; sourceTree = "<group>"; };
 		27A44D7C1E10A32A00F7213B /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		27A44D7E1E10A32E00F7213B /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
@@ -928,21 +915,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		279375D61E2CA2E6000CC55E /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				279375D71E2CA2E6000CC55E /* AVFoundation.framework in Frameworks */,
-				279375D81E2CA2E6000CC55E /* OpenGLES.framework in Frameworks */,
-				279375D91E2CA2E6000CC55E /* CoreTelephony.framework in Frameworks */,
-				279375DA1E2CA2E6000CC55E /* CoreMotion.framework in Frameworks */,
-				279375DB1E2CA2E6000CC55E /* SystemConfiguration.framework in Frameworks */,
-				279375DC1E2CA2E6000CC55E /* CoreBluetooth.framework in Frameworks */,
-				279375DD1E2CA2E6000CC55E /* libz.tbd in Frameworks */,
-				279375DF1E2CA2E6000CC55E /* libstdc++.tbd in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -964,7 +936,6 @@
 				2708FB391DE5860A0010071B /* kq_banbo_app.app */,
 				2708FB521DE5860A0010071B /* kq_banbo_appTests.xctest */,
 				2708FB5D1DE5860A0010071B /* kq_banbo_appUITests.xctest */,
-				279375FC1E2CA2E6000CC55E /* kq_banbo_app-sim.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -2554,23 +2525,6 @@
 			productReference = 2708FB5D1DE5860A0010071B /* kq_banbo_appUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
-		2793751D1E2CA2E6000CC55E /* kq_banbo_app-sim */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 279375F91E2CA2E6000CC55E /* Build configuration list for PBXNativeTarget "kq_banbo_app-sim" */;
-			buildPhases = (
-				2793751F1E2CA2E6000CC55E /* Sources */,
-				279375D61E2CA2E6000CC55E /* Frameworks */,
-				279375E11E2CA2E6000CC55E /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "kq_banbo_app-sim";
-			productName = kq_banbo_app;
-			productReference = 279375FC1E2CA2E6000CC55E /* kq_banbo_app-sim.app */;
-			productType = "com.apple.product-type.application";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -2598,9 +2552,6 @@
 						ProvisioningStyle = Automatic;
 						TestTargetID = 2708FB381DE5860A0010071B;
 					};
-					2793751D1E2CA2E6000CC55E = {
-						DevelopmentTeam = 39F533GK84;
-					};
 				};
 			};
 			buildConfigurationList = 2708FB341DE5860A0010071B /* Build configuration list for PBXProject "kq_banbo_app" */;
@@ -2619,7 +2570,6 @@
 				2708FB381DE5860A0010071B /* kq_banbo_app */,
 				2708FB511DE5860A0010071B /* kq_banbo_appTests */,
 				2708FB5C1DE5860A0010071B /* kq_banbo_appUITests */,
-				2793751D1E2CA2E6000CC55E /* kq_banbo_app-sim */,
 			);
 		};
 /* End PBXProject section */
@@ -2667,15 +2617,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		279375E11E2CA2E6000CC55E /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				279375EC1E2CA2E6000CC55E /* Assets.xcassets in Resources */,
-				279375EF1E2CA2E6000CC55E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3073,15 +3014,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		2793751F1E2CA2E6000CC55E /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				279375931E2CA2E6000CC55E /* AppDelegate.m in Sources */,
-				279375C91E2CA2E6000CC55E /* main.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -3319,51 +3251,6 @@
 			};
 			name = Release;
 		};
-		279375FA1E2CA2E6000CC55E /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 39F533GK84;
-				ENABLE_BITCODE = NO;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
-				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/kq_banbo_app/kq_banbo_app.pch";
-				INFOPLIST_FILE = "kq_banbo_app copy-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/kq_banbo_app/classes/localLib/PC80A",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.yz.banbokaoqin.kq-banbo-app";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "7a8c6d9d-f16f-43eb-88c7-6d93154d8ae7";
-				PROVISIONING_PROFILE_SPECIFIER = hcyDevelop;
-			};
-			name = Debug;
-		};
-		279375FB1E2CA2E6000CC55E /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				DEVELOPMENT_TEAM = 39F533GK84;
-				ENABLE_BITCODE = NO;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
-				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/kq_banbo_app/kq_banbo_app.pch";
-				INFOPLIST_FILE = "kq_banbo_app copy-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/kq_banbo_app/classes/localLib/PC80A",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.yz.banbokaoqin.kq-banbo-app";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "6da8bcaf-93a9-4fee-af8c-7cd58c60a1c5";
-				PROVISIONING_PROFILE_SPECIFIER = hcyDis;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -3399,15 +3286,6 @@
 			buildConfigurations = (
 				2708FB6D1DE5860A0010071B /* Debug */,
 				2708FB6E1DE5860A0010071B /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		279375F91E2CA2E6000CC55E /* Build configuration list for PBXNativeTarget "kq_banbo_app-sim" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				279375FA1E2CA2E6000CC55E /* Debug */,
-				279375FB1E2CA2E6000CC55E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

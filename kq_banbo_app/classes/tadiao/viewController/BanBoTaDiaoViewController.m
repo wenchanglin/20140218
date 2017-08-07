@@ -29,7 +29,6 @@
         tadiao.models = _tadiaoSubArray[i];
         tadiao.shebeimodel = _shebeiArray[i];
         tadiao.taDiaoid = _listArray[i];
-         //DDLogInfo(@"%@,%@,%@,%@,index:%zd",_tadiaoNameArray,tadiao.models.wHeight,tadiao.shebeimodel.deviceName,tadiao.shebeimodel.wheight,idx);
         [_viewControllers addObject:tadiao];
      }
     self.pageTabView = [[XXPageTabView alloc]initWithChildControllers:_viewControllers childTitles:_tadiaoNameArray];
@@ -48,7 +47,6 @@
     // Dispose of any resources that can be recreated.
 }
 - (void)pageTabViewDidEndChange {
-   // NSLog(@"#####%zd", self.pageTabView.selectedTabIndex);
     if (_listArray.count==0) {
         return;
     }

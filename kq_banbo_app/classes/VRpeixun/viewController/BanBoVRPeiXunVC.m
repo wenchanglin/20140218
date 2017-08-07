@@ -78,7 +78,6 @@
     BanBoShiminListItem * susheItem = self.itemArr[indexPath.row];
     if (susheItem.tag == BanBoVRTypeTJ) {
         BanBoVRTJVC * susheguanli = [[BanBoVRTJVC alloc]initWithListItem:susheItem project:self.project];
-        
         [self.navigationController pushViewController:susheguanli animated:YES];
     }
     else if (susheItem.tag==BanBoVRTypeDetail)

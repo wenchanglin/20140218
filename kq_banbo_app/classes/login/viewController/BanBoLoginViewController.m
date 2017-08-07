@@ -112,21 +112,7 @@
     _loginBtn.layer.borderWidth = 1;
     [_imageV addSubview:_loginBtn];
 }
--(void)testData{
-    //#ifdef DEBUG
-    //#ifdef HCYDEBUG
-    ////    NSString *tmpuser=@"13456789002";
-    //    NSString *tmpuser=@"13456869777";
-    //#else
-    ////    NSString *tmpuser=@"15858975583";
-    //    NSString *tmpuser=@"13456789100";
-    //    NSString *tmpuser=@"13456869777"; //nvr监控  寿国梁帐号-正式服
-    //#endif
-    
-    //    self.userNameField.text=tmpuser;
-    //    self.passwordField.text=tmpuser;
-    //#endif
-}
+
 #pragma mark action
 -(void)viewTaped:(UITapGestureRecognizer *)tap{
     if ([self.userNameField isFirstResponder] || [self.passwordField isFirstResponder]) {
@@ -228,7 +214,6 @@
     }
     return YES;
 }
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

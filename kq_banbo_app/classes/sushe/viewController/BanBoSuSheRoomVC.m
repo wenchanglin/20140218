@@ -49,7 +49,7 @@
             [HCYUtil toastMsg:@"该宿舍暂无数据" inView:self.view];
         }
         [_myTableView reloadData];
-        
+    
     }];
 }
 -(void)setupSubviews
@@ -72,7 +72,6 @@
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    
     return _dataSource.count;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -83,7 +82,7 @@
     {
         cell = [[BanBoSuSheRoomTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    cell.model = _dataSource[indexPath.row];;
+    cell.model = _dataSource[indexPath.row];
     cell.delegate =self;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;

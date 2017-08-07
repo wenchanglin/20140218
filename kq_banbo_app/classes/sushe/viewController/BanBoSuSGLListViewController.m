@@ -72,7 +72,7 @@
     _myTableView.dataSource = self;
     _myTableView.delegate = self;
     [self.view addSubview:_myTableView];
-     _myTableView.tableFooterView=[[UIView alloc]init];
+    _myTableView.tableFooterView=[[UIView alloc]init];
 }
 -(void)getData
 {
@@ -82,7 +82,6 @@
         {
             [HCYUtil toastMsg:@"该工地暂无宿舍楼" inView:self.view];
         }
-
         [_myTableView reloadData];
     }];
 }

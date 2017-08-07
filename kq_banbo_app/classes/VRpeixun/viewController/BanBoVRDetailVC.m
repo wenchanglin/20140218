@@ -94,16 +94,21 @@
 
 -(void)refreshViewDidLoading:(id)view
 {
-    if ([view isEqual:_VRDetailTableView.footer]) {
+    if ([view isEqual:_VRDetailTableView.footer])
+    {
         
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             
-            if (_DataSource.count >= 1500) {
+            if (_DataSource.count >= 1500)
+            {
                 //如果没有可加载的数据,需要将footer的isLastPage属性设置为YES,这样就不会出发底部刷新了
                 [_VRDetailTableView.footer setIsLastPage:YES];
                 [_VRDetailTableView reloadData];
-            } else {
-                if (isSearchdata==YES) {
+            }
+            else
+            {
+                if (isSearchdata==YES)
+                {
                     _searchPage++;
                     BanBoBanzhuItem *banzhu=self.headerView.banzhuItem;
                     BanBoBanzhuItem *xiaobanzhu=self.headerView.xiaobanzhuItem;
@@ -115,7 +120,6 @@
                 }
                 else if(isSearchdata==NO)
                 {
-                    
                     _page++;
                     [self requestData];
                     [_VRDetailTableView footerFinishedLoading];
@@ -211,7 +215,6 @@
 }
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    
     UIView * view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 41)];
     UIView * oneview = [[UIView alloc]initWithFrame:CGRectMake(0, 1, SCREEN_WIDTH, 1)];
     oneview.backgroundColor = [UIColor hcy_colorWithString:@"#e0e0e0"];

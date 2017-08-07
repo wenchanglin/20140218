@@ -109,9 +109,9 @@
     NSString *backPath=[[YZCacheManager sharedInstance] tmpPathForImage:backImage sepcFileName:backName type:BanBoImageTypeJPG];
     
     [YZHttpService uploadFile:frontPath param:param toUrl:Inter_IdCardPicUpload formFileName:@"cardpic" progress:nil success:^(id responseObject) {
-        DDLogDebug(@"zheng%@",responseObject);
+        //DDLogDebug(@"zheng%@",responseObject);
        [YZHttpService uploadFile:backPath param:param toUrl:Inter_IdCardPicUpload formFileName:@"cardpic" progress:nil success:^(id responseObject) {
-           DDLogDebug(@"fan:%@",responseObject);
+         //  DDLogDebug(@"fan:%@",responseObject);
            completion(responseObject,nil);
        } failure:^(NSError *error) {
             completion(nil,error);
@@ -138,7 +138,7 @@
     } failure:^(NSError *error) {
         completion(nil,error);
     }];
-    DDLogInfo(@"hearts参数:%@",param);
+  //  DDLogInfo(@"hearts参数:%@",param);
 }
 -(void)getLifePic:(NSString *)lifepicture forUser:(NSString *)cardId  completion:(BanBoHealthManagerCompletionBlock)completion
 {
@@ -171,7 +171,7 @@
     serializer.acceptableContentTypes = [NSSet setWithObjects:@"image/jpeg",@"text/html", nil];
     manager.responseSerializer = serializer;
     [manager GET:string parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        DDLogInfo(@"身份证成功:ID：%@-%@//%@",cardId,string,responseObject);
+       // DDLogInfo(@"身份证成功:ID：%@-%@//%@",cardId,string,responseObject);
         completion(responseObject,nil);
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         //DDLogInfo(@"身份证错误:%@%@",string,error);

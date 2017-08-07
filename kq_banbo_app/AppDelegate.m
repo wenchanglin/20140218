@@ -19,6 +19,7 @@
 #import "UncaughtExceptionHandler.h"
 #import "BanBoErrorDefine.h"
 #import "YZHttpService.h"
+
 @interface AppDelegate ()<YZHttpErrorExec,UIAlertViewDelegate>
 
 @end
@@ -28,8 +29,8 @@ extern NSString *const BanBoLogoutNotification;
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-   // SWIZZ_IT
     [self config];
+    
     self.window=[[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     [self.window makeKeyWindow];
     if ([[BanBoUserInfoManager sharedInstance] currentLoginInfo]) {

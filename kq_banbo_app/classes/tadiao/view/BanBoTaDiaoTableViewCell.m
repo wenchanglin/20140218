@@ -8,6 +8,7 @@
 
 #import "BanBoTaDiaoTableViewCell.h"
 #import "YZLabelFactory.h"
+#import <Masonry.h>
 @implementation BanBoTaDiaoTableViewCell
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier withIndexPath:(NSIndexPath *)indexpath
 {
@@ -54,10 +55,12 @@
     if(models.wDip ==nil||models.wDip==NULL)
     {
         _obliqueityLabel.text = @"0";
+        [_obliqueityLabel sizeToFit];
     }
     else
     {
         _obliqueityLabel.text = [NSString stringWithFormat:@"%@",models.wDip];//倾角数值
+        [_obliqueityLabel sizeToFit];
     }
     
     if(models.wRate ==nil||models.wRate==NULL)
@@ -73,19 +76,23 @@
     if(models.wFRateVCode ==nil||models.wFRateVCode==NULL)
     {
         _carryLabel.text = @"0";
+        [_carryLabel sizeToFit];
     }
     else
     {
         _carryLabel.text = [NSString stringWithFormat:@"%@",models.wFRateVCode];//最大载重
+        [_carryLabel sizeToFit];
         
     }
     if(models.wFCodeVRate ==nil||models.wFCodeVRate==NULL)
     {
         _extentLabel.text = @"0";
+        [_extentLabel sizeToFit];
     }
     else
     {
         _extentLabel.text = [NSString stringWithFormat:@"%@",models.wFCodeVRate];//最大幅度
+        [_extentLabel sizeToFit];
         
     }
     if(shebeimodel.deviceNumber ==nil||shebeimodel.deviceNumber==NULL)
@@ -199,191 +206,541 @@
 {
     if(_indexpath.section==0)
     {
-        _TaDiaoStates = [self createLabelwithFrame:CGRectMake(20, 5, 120, 30) withFont:[YZLabelFactory bigFont] withTextColor:[UIColor hcy_colorWithString:@"#333333"]];
+        _TaDiaoStates = [[UILabel alloc]init];
+        [_TaDiaoStates setTextColor:[UIColor hcy_colorWithString:@"#333333"]];
+        _TaDiaoStates.font = [YZLabelFactory bigFont];
         [self.contentView addSubview:_TaDiaoStates];
-        _simLabel = [self createLabelwithFrame:CGRectMake(20, CGRectGetMaxY(_TaDiaoStates.frame)+1,60,30) withFont:[YZLabelFactory bigFont] withTextColor:[UIColor hcy_colorWithString:@"#333333"]];
+        [_TaDiaoStates mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self).offset(20);
+            make.top.equalTo(self).offset(5);
+            make.width.mas_equalTo(120);
+        }];
+        _simLabel = [[UILabel alloc]init];
+        [_simLabel setTextColor:[UIColor hcy_colorWithString:@"#333333"]];
+        _simLabel.font = [YZLabelFactory bigFont];
         _simLabel.text = @"SIM卡";
         [self.contentView addSubview:_simLabel];
-        _jingduLabel = [self createLabelwithFrame:CGRectMake(20, CGRectGetMaxY(_simLabel.frame)+1, 60, 30) withFont:[YZLabelFactory bigFont] withTextColor:[UIColor hcy_colorWithString:@"#333333"]];
+        [_simLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(_TaDiaoStates.mas_left);
+            make.top.equalTo(_TaDiaoStates.mas_bottom).offset(5);
+            make.width.equalTo(_TaDiaoStates.mas_width).multipliedBy(0.5);
+        }];
+        _jingduLabel = [UILabel new];
+        [_jingduLabel setTextColor:[UIColor hcy_colorWithString:@"#333333"]];
+        _jingduLabel.font = [YZLabelFactory bigFont];
         _jingduLabel.text = @"经度";
         [self.contentView addSubview:_jingduLabel];
-        _weiduLabel = [self createLabelwithFrame:CGRectMake(20, CGRectGetMaxY(_jingduLabel.frame)+1, 60, 30) withFont:[YZLabelFactory bigFont] withTextColor:[UIColor hcy_colorWithString:@"#333333"]];
+        [_jingduLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(_simLabel.mas_left);
+            make.width.equalTo(_simLabel);
+            make.top.equalTo(_simLabel.mas_bottom).offset(10);
+        }];
+        _weiduLabel = [UILabel new];
+        [_weiduLabel setTextColor:[UIColor hcy_colorWithString:@"#333333"]];
+        _weiduLabel.font = [YZLabelFactory bigFont];
         _weiduLabel.text =@"纬度";
         [self.contentView addSubview:_weiduLabel];
-        _qingjiaoLabel = [self createLabelwithFrame:CGRectMake(20, CGRectGetMaxY(_weiduLabel.frame)+1, 60, 30) withFont:[YZLabelFactory bigFont] withTextColor:[UIColor hcy_colorWithString:@"#333333"]];
+        [_weiduLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(_jingduLabel.mas_left);
+            make.top.equalTo(_jingduLabel.mas_bottom).offset(10);
+            make.width.equalTo(_jingduLabel);
+        }];
+        _qingjiaoLabel = [UILabel new];
         _qingjiaoLabel.text = @"倾角";
+        [_qingjiaoLabel setTextColor:[UIColor hcy_colorWithString:@"#333333"]];
+        _qingjiaoLabel.font = [YZLabelFactory bigFont];
         [self.contentView addSubview:_qingjiaoLabel];
-        _beilvLabel = [self createLabelwithFrame:CGRectMake(20, CGRectGetMaxY(_qingjiaoLabel.frame)+1, 60, 30) withFont:[YZLabelFactory bigFont] withTextColor:[UIColor hcy_colorWithString:@"#333333"]];
+        [_qingjiaoLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(_weiduLabel.mas_left);
+            make.top.equalTo(_weiduLabel.mas_bottom).offset(10);
+            make.width.equalTo(_weiduLabel);
+        }];
+        _beilvLabel = [UILabel new];
+        [_beilvLabel setTextColor:[UIColor hcy_colorWithString:@"#333333"]];
+        _beilvLabel.font = [YZLabelFactory bigFont];
         _beilvLabel.text = @"倍率";
         [self.contentView addSubview:_beilvLabel];
-        _zuidazaizhongLabel = [self createLabelwithFrame:CGRectMake(20, CGRectGetMaxY(_beilvLabel.frame)+1, SCREEN_WIDTH/2+20, 30) withFont:[YZLabelFactory bigFont] withTextColor:[UIColor hcy_colorWithString:@"#333333"]];
+        [_beilvLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(_qingjiaoLabel);
+            make.top.equalTo(_qingjiaoLabel.mas_bottom).offset(10);
+            make.width.equalTo(_qingjiaoLabel);
+        }];
+        
+        _zuidazaizhongLabel = [UILabel new];
+        [_zuidazaizhongLabel setTextColor:[UIColor hcy_colorWithString:@"#333333"]];
+        _zuidazaizhongLabel.font = [YZLabelFactory bigFont];
         _zuidazaizhongLabel.text =@"当前幅度允许最大载重";
         [self.contentView addSubview:_zuidazaizhongLabel];
-        _zuidafuduLabel = [self createLabelwithFrame:CGRectMake(20, CGRectGetMaxY(_zuidazaizhongLabel.frame)+1, SCREEN_WIDTH/2+20, 30) withFont:[YZLabelFactory bigFont] withTextColor:[UIColor hcy_colorWithString:@"#333333"]];
+        [_zuidazaizhongLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(_beilvLabel.mas_bottom).offset(10);
+            make.left.equalTo(_beilvLabel);
+        }];
+        
+        _zuidafuduLabel = [UILabel new];
+        [_zuidafuduLabel setTextColor:[UIColor hcy_colorWithString:@"#333333"]];
+        _zuidafuduLabel.font = [YZLabelFactory bigFont];
         _zuidafuduLabel.text =@"当前载重允许最大幅度";
         [self.contentView addSubview:_zuidafuduLabel];
-        
-        _phoneLabel = [self createLabelwithFrame:CGRectMake(CGRectGetMaxX(_simLabel.frame)+40, CGRectGetMaxY(_TaDiaoStates.frame)+1, SCREEN_WIDTH-CGRectGetMaxX(_simLabel.frame)-120, 30) withFont:[YZLabelFactory bigFont] withTextColor:[UIColor hcy_colorWithString:@"#fda803"]];
+        [_zuidafuduLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(_zuidazaizhongLabel.mas_bottom).offset(10);
+            make.left.equalTo(_zuidazaizhongLabel);
+            make.width.equalTo(_zuidazaizhongLabel);
+        }];
+        _phoneLabel = [UILabel new];
+        [_phoneLabel setTextColor:[UIColor hcy_colorWithString:@"#fda803"]];
+        _phoneLabel.font = [YZLabelFactory bigFont];
         [self.contentView addSubview:_phoneLabel];
-        _longitudeLabel =[self createLabelwithFrame:CGRectMake(CGRectGetMaxX(_jingduLabel.frame)+40, CGRectGetMaxY(_phoneLabel.frame)+1, _phoneLabel.width, 30) withFont:[YZLabelFactory bigFont] withTextColor:[UIColor hcy_colorWithString:@"#fda803"]];
+        [_phoneLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(_TaDiaoStates.mas_bottom).offset(5);
+            make.left.equalTo(_simLabel.mas_right).offset(40);
+            make.width.equalTo(self).multipliedBy(0.7);
+        }];
+        
+        _longitudeLabel = [UILabel new];
+        [_longitudeLabel setTextColor:[UIColor hcy_colorWithString:@"#fda803"]];
+        _longitudeLabel.font = [YZLabelFactory bigFont];
         [self.contentView addSubview:_longitudeLabel];
-        _latitudeLabel =[self createLabelwithFrame:CGRectMake(CGRectGetMaxX(_weiduLabel.frame)+40, CGRectGetMaxY(_longitudeLabel.frame)+1, _phoneLabel.width, 30) withFont:[YZLabelFactory bigFont] withTextColor:[UIColor hcy_colorWithString:@"#fda803"]];
+        [_longitudeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(_phoneLabel.mas_bottom).offset(10);
+            make.left.equalTo(_phoneLabel.mas_left);
+        }];
+        _latitudeLabel =[UILabel new];
+        [_latitudeLabel setTextColor:[UIColor hcy_colorWithString:@"#fda803"]];
+        _latitudeLabel.font = [YZLabelFactory bigFont];
         [self.contentView addSubview:_latitudeLabel];
-        _obliqueityLabel = [self createLabelwithFrame:CGRectMake(CGRectGetMaxX(_qingjiaoLabel.frame)+40, CGRectGetMaxY(_latitudeLabel.frame)+1, 40, 30) withFont:[YZLabelFactory bigFont] withTextColor:[UIColor hcy_colorWithString:@"#fda803"]];
+        [_latitudeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(_longitudeLabel.mas_bottom).offset(10);
+            make.left.equalTo(_phoneLabel.mas_left);
+            make.width.equalTo(_phoneLabel.mas_width);
+        }];
+        _obliqueityLabel = [UILabel new];
+        [_obliqueityLabel setTextColor:[UIColor hcy_colorWithString:@"#fda803"]];
+        _obliqueityLabel.font = [YZLabelFactory bigFont];
         [self.contentView addSubview:_obliqueityLabel];
-        _qingjiaoLabel = [self createLabelwithFrame:CGRectMake(CGRectGetMaxX(_obliqueityLabel.frame), CGRectGetMaxY(_latitudeLabel.frame)+1, 30, 30) withFont:[YZLabelFactory bigFont] withTextColor:[UIColor hcy_colorWithString:@"#333333"]];
+        [_obliqueityLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(_latitudeLabel.mas_bottom).offset(10);
+            make.left.equalTo(_latitudeLabel.mas_left);
+            
+        }];
+        _qingjiaoLabel = [UILabel new];
+        [_qingjiaoLabel setTextColor:[UIColor hcy_colorWithString:@"#333333"]];
+        _qingjiaoLabel.font = [YZLabelFactory bigFont];
         _qingjiaoLabel.text = @"度";
         [self.contentView addSubview:_qingjiaoLabel];
-        _multiplyLabel =[self createLabelwithFrame:CGRectMake(CGRectGetMaxX(_beilvLabel.frame)+40, CGRectGetMaxY(_obliqueityLabel.frame)+1, _phoneLabel.width, 30) withFont:[YZLabelFactory bigFont] withTextColor:[UIColor hcy_colorWithString:@"#fda803"]];
+        [_qingjiaoLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(_latitudeLabel.mas_bottom).offset(10);
+            make.left.equalTo(_obliqueityLabel.mas_right).offset(5);
+        }];
+        _multiplyLabel =[UILabel new];
+        [_multiplyLabel setTextColor:[UIColor hcy_colorWithString:@"#fda803"]];
+        _multiplyLabel.font = [YZLabelFactory bigFont];
         [self.contentView addSubview:_multiplyLabel];
-        _carryLabel = [self createLabelwithFrame:CGRectMake(CGRectGetMaxX(_zuidazaizhongLabel.frame), CGRectGetMaxY(_multiplyLabel.frame)+1, 50, 30) withFont:[YZLabelFactory bigFont] withTextColor:[UIColor hcy_colorWithString:@"#fda803"]];
+        [_multiplyLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(_obliqueityLabel.mas_bottom).offset(10);
+            make.left.equalTo(_obliqueityLabel.mas_left);
+        }];
+        
+        _carryLabel = [UILabel new];
+        [_carryLabel setTextColor:[UIColor hcy_colorWithString:@"#fda803"]];
+        _carryLabel.font = [YZLabelFactory bigFont];
         [self.contentView addSubview:_carryLabel];
-        _carrydanweiLabel = [self createLabelwithFrame:CGRectMake(CGRectGetMaxX(_carryLabel.frame), CGRectGetMaxY(_multiplyLabel.frame)+1, 30, 30) withFont:[YZLabelFactory bigFont] withTextColor:[UIColor hcy_colorWithString:@"#333333"]];
+        [_carryLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(_zuidazaizhongLabel);
+            make.left.equalTo(_zuidazaizhongLabel.mas_right).offset(30);
+        }];
+        _carrydanweiLabel = [UILabel new];
+        [_carrydanweiLabel setTextColor:[UIColor hcy_colorWithString:@"#333333"]];
+        _carrydanweiLabel.font = [YZLabelFactory bigFont];
         _carrydanweiLabel.text = @"kg";
         [self.contentView addSubview:_carrydanweiLabel];
-        _extentLabel = [self createLabelwithFrame:CGRectMake(CGRectGetMaxX(_zuidafuduLabel.frame), CGRectGetMaxY(_carryLabel.frame)+1, 50, 30) withFont:[YZLabelFactory bigFont] withTextColor:[UIColor hcy_colorWithString:@"#fda803"]];
+        [_carrydanweiLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(_carryLabel);
+            make.left.equalTo(_carryLabel.mas_right).offset(5);
+        }];
+        _extentLabel =[UILabel new];
+        [_extentLabel setTextColor:[UIColor hcy_colorWithString:@"#fda803"]];
+        _extentLabel.font = [YZLabelFactory bigFont];
         [self.contentView addSubview:_extentLabel];
-        _extentdanweiLabel = [self createLabelwithFrame:CGRectMake(CGRectGetMaxX(_extentLabel.frame), CGRectGetMaxY(_carryLabel.frame)+1, 30, 30) withFont:[YZLabelFactory bigFont] withTextColor:[UIColor hcy_colorWithString:@"#333333"]];
+        [_extentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(_zuidafuduLabel);
+            make.left.equalTo(_zuidafuduLabel.mas_right).offset(30);
+        }];
+        _extentdanweiLabel = [UILabel new];
+        [_extentdanweiLabel setTextColor:[UIColor hcy_colorWithString:@"#333333"]];
+        _extentdanweiLabel.font = [YZLabelFactory bigFont];
         _extentdanweiLabel.text = @"m";
         [self.contentView addSubview:_extentdanweiLabel];
+        [_extentdanweiLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(_extentLabel);
+            make.left.equalTo(_extentLabel.mas_right).offset(5);
+        }];
     }
     else if (_indexpath.section==1)
     {
-        _nameLabel = [self createLabelwithFrame:CGRectMake(20, 5, (SCREEN_WIDTH-20)/2, 30) withFont:[YZLabelFactory bigFont] withTextColor:[UIColor hcy_colorWithString:@"#333333"]];
+        _nameLabel = [self createLabelWithFont:[YZLabelFactory bigFont] withTextColor:[UIColor hcy_colorWithString:@"#333333"]];
         [self.contentView addSubview:_nameLabel];
-        _timeLabel = [self createLabelwithFrame:CGRectMake(SCREEN_WIDTH-(SCREEN_WIDTH/2)-10, 5, SCREEN_WIDTH/2, 30) withFont:[YZLabelFactory bigFont] withTextColor:[UIColor hcy_colorWithString:@"#999999"]];
-        _timeLabel.font = [UIFont systemFontOfSize:13];
-        _timeLabel.textAlignment = NSTextAlignmentRight;
+        [_nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self).offset(10);
+            make.left.equalTo(self).offset(20);
+            make.width.equalTo(self).multipliedBy(0.5);
+            make.height.mas_equalTo(30);
+        }];
+        _timeLabel = [self createLabelWithFont:[UIFont systemFontOfSize:13] withTextColor:[UIColor hcy_colorWithString:@"#999999"]];
         [self.contentView addSubview:_timeLabel];
-        _bigbiLabel = [self createLabelwithFrame:CGRectMake(20, CGRectGetMaxY(_nameLabel.frame)+1, 100, 30) withFont:[YZLabelFactory bigFont] withTextColor:[UIColor hcy_colorWithString:@"#333333"]];
+        [_timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self).offset(10);
+            make.right.equalTo(self).offset(-10);
+            make.centerY.equalTo(_nameLabel);
+        }];
+        _bigbiLabel = [self createLabelWithFont:[YZLabelFactory bigFont] withTextColor:[UIColor hcy_colorWithString:@"#333333"]];
         _bigbiLabel.text = @"大臂长";
         [self.contentView addSubview:_bigbiLabel];
-        _pinghengbiLabel =[self createLabelwithFrame:CGRectMake(20, CGRectGetMaxY(_bigbiLabel.frame)+1, 100, 30) withFont:[YZLabelFactory bigFont] withTextColor:[UIColor hcy_colorWithString:@"#333333"]];
+        [_bigbiLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(_nameLabel.mas_bottom).offset(5);
+            make.left.equalTo(self).offset(20);
+        }];
+        _pinghengbiLabel =[self createLabelWithFont:[YZLabelFactory bigFont] withTextColor:[UIColor hcy_colorWithString:@"#333333"]];
         _pinghengbiLabel.text =@"平衡臂长";
         [self.contentView addSubview:_pinghengbiLabel];
-        _bigArmLabel = [self createLabelwithFrame:CGRectMake(CGRectGetMaxX(_bigbiLabel.frame)+20, CGRectGetMaxY(_nameLabel.frame)+1, SCREEN_WIDTH-_TaDiaoStates.width, 30) withFont:[YZLabelFactory bigFont] withTextColor:[UIColor hcy_colorWithString:@"#fda803"]];
-        [self.contentView addSubview:_bigArmLabel];
-        _balanceArmLabel = [self createLabelwithFrame:CGRectMake(CGRectGetMaxX(_pinghengbiLabel.frame)+20, CGRectGetMaxY(_bigArmLabel.frame)+1, SCREEN_WIDTH-_TaDiaoStates.width, 30) withFont:[YZLabelFactory bigFont] withTextColor:[UIColor hcy_colorWithString:@"#fda803"]];
-        [self.contentView addSubview:_balanceArmLabel];
-        _fengeView = [[UIView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(_balanceArmLabel.frame)+1, SCREEN_WIDTH, 15)];
-        _fengeView.backgroundColor = [UIColor hcy_colorWithString:@"#f7f7f7"];
-        [self.contentView addSubview:_fengeView];
-        UIView * firstV = [[UIView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(_balanceArmLabel.frame)+1, SCREEN_WIDTH, 1)];
-        firstV.backgroundColor = [UIColor hcy_colorWithString:@"#e0e0e0"];
-        [self.contentView addSubview:firstV];
-        UIView * secondV = [[UIView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(_fengeView.frame)-1, SCREEN_WIDTH, 1)];
-        secondV.backgroundColor = [UIColor hcy_colorWithString:@"#e0e0e0"];
-        [self.contentView addSubview:secondV];
+        [_pinghengbiLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(_bigbiLabel.mas_bottom).offset(5);
+            make.left.equalTo(self).offset(20);
+        }];
         
-        _lijuLabel = [self createLabelwithFrame:CGRectMake(20, CGRectGetMaxY(_fengeView.frame)+15, 60, 20) withFont:[YZLabelFactory bigFont] withTextColor:[UIColor hcy_colorWithString:@"#333333"]];
+        _bigArmLabel = [self createLabelWithFont:[YZLabelFactory bigFont] withTextColor:[UIColor hcy_colorWithString:@"#fda803"]];
+        [self.contentView addSubview:_bigArmLabel];
+        [_bigArmLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(_bigbiLabel);
+            make.left.equalTo(_bigbiLabel.mas_right).offset(70);
+        }];
+        _balanceArmLabel = [self createLabelWithFont:[YZLabelFactory bigFont] withTextColor:[UIColor hcy_colorWithString:@"#fda803"]];
+        [self.contentView addSubview:_balanceArmLabel];
+        [_balanceArmLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.equalTo(_pinghengbiLabel);
+            make.top.equalTo(_bigArmLabel.mas_bottom).offset(5);
+            make.left.equalTo(_pinghengbiLabel.mas_right).offset(50);
+        }];
+        _fengeView = [UIView new];
+        [self.contentView addSubview:_fengeView];
+        _fengeView.backgroundColor = [UIColor hcy_colorWithString:@"#f7f7f7"];
+        [_fengeView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(_pinghengbiLabel.mas_bottom).offset(10);
+            make.width.equalTo(self);
+            make.height.mas_equalTo(15);
+        }];
+        
+        UIView * firstV = [UIView new];
+        [self.contentView addSubview:firstV];
+        firstV.backgroundColor = [UIColor hcy_colorWithString:@"#e0e0e0"];
+        [firstV mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(_fengeView);
+            make.width.equalTo(self);
+            make.height.mas_equalTo(1);
+        }];
+        UIView * secondV = [UIView new];
+        [self.contentView addSubview:secondV];
+        secondV.backgroundColor = [UIColor hcy_colorWithString:@"#e0e0e0"];
+        [secondV mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.bottom.equalTo(_fengeView.mas_bottom);
+            make.width.equalTo(self);
+            make.height.mas_equalTo(1);
+        }];
+        
+        _lijuLabel = [UILabel new];
         _lijuLabel.text =@"力矩";
+        _lijuLabel.font = [YZLabelFactory bigFont];
+        _lijuLabel.textColor = [UIColor hcy_colorWithString:@"#333333"];
         [self.contentView addSubview:_lijuLabel];
-        _lijuSubLabel = [self createLabelwithFrame:CGRectMake(20, CGRectGetMaxY(_lijuLabel.frame)+5, 60, 20) withFont:[YZLabelFactory bigFont] withTextColor:[UIColor hcy_colorWithString:@"#fda803"]];
+        [_lijuLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self).offset(20);
+            make.top.equalTo(_fengeView.mas_bottom).offset(10);
+        }];
+        
+        _lijuSubLabel = [UILabel new];
         [self.contentView addSubview:_lijuSubLabel];
-        _lijudanweiBtn = [self createButtonwithFrame:CGRectMake(CGRectGetMaxX(_lijuLabel.frame)+3, CGRectGetMaxY(_fengeView.frame)+10, 25, 25) withImage:[UIImage imageNamed:@"力矩图标"]];
+        _lijuSubLabel.font = [YZLabelFactory bigFont];
+        _lijuSubLabel.textAlignment = NSTextAlignmentCenter;
+        _lijuSubLabel.textColor = [UIColor hcy_colorWithString:@"#fda803"];
+        [_lijuSubLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self).offset(20);
+            make.top.equalTo(_lijuLabel.mas_bottom).offset(5);
+            
+        }];
+        _lijudanweiBtn = [UIButton new];
         [self.contentView addSubview:_lijudanweiBtn];
-        _lijudanweiLabel =[self createLabelwithFrame:CGRectMake(CGRectGetMaxX(_lijuLabel.frame)+3, CGRectGetMaxY(_lijudanweiBtn.frame)+5, 30, 20) withFont:[YZLabelFactory bigFont] withTextColor:[UIColor hcy_colorWithString:@"#333333"]];
+        UIImage * image = [[UIImage imageNamed:@"力矩图标"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        [_lijudanweiBtn setImage:image forState:UIControlStateNormal];
+        [_lijudanweiBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(_fengeView.mas_bottom).offset(8);
+            make.left.equalTo(_lijuLabel.mas_right).offset(20);
+        }];
+        
+        _lijudanweiLabel =[UILabel new];
+        _lijudanweiLabel.textColor = [UIColor hcy_colorWithString:@"#333333"];
         _lijudanweiLabel.text =@"t.m";
         [self.contentView addSubview:_lijudanweiLabel];
-        _lijuProgress = [self createProgressViewwithFrame:CGRectMake(CGRectGetMaxX(_lijudanweiBtn.frame)+10, CGRectGetMaxY(_fengeView.frame)+23, (SCREEN_WIDTH-CGRectGetMaxX(_lijudanweiBtn.frame)-30), 22) withProgress:0];
+        [_lijudanweiLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(_lijudanweiBtn);
+            make.top.equalTo(_lijudanweiBtn.mas_bottom).offset(5);
+            make.centerX.equalTo(_lijudanweiBtn);
+        }];
+        _lijuProgress = [self createProgressViewProgress:0];
         [self.contentView addSubview:_lijuProgress];
-        _lijuView = [[UIView alloc]initWithFrame:CGRectMake(20, CGRectGetMaxY(_lijuSubLabel.frame)+10, SCREEN_WIDTH-40, 1)];
-        _lijuView.backgroundColor = [UIColor hcy_colorWithString:@"#e0e0e0"];
+        
+        [_lijuProgress mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(_lijudanweiBtn.mas_right).offset(20);
+            make.top.equalTo(_fengeView.mas_bottom).offset(20);
+            make.right.equalTo(self).offset(-20);
+            make.height.mas_equalTo(22);
+        }];
+        _lijuView = [UIView new];
         [self.contentView addSubview:_lijuView];
-        _zaizhongLabel = [self createLabelwithFrame:CGRectMake(20, CGRectGetMaxY(_lijuView.frame)+15, 60, 20) withFont:[YZLabelFactory bigFont] withTextColor:[UIColor hcy_colorWithString:@"#333333"]];
+        _lijuView.backgroundColor = [UIColor hcy_colorWithString:@"#e0e0e0"];
+        [_lijuView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(_lijuSubLabel.mas_bottom).offset(5);
+            make.left.equalTo(_lijuLabel);
+            make.right.equalTo(self).offset(-20);
+            make.height.mas_equalTo(1);
+        }];
+        _zaizhongLabel = [self createLabelWithFont:[YZLabelFactory bigFont] withTextColor:[UIColor hcy_colorWithString:@"#333333"]];
         _zaizhongLabel.text = @"载重";
         [self.contentView addSubview:_zaizhongLabel];
-        _zaizhongSubLabel = [self createLabelwithFrame:CGRectMake(20, CGRectGetMaxY(_zaizhongLabel.frame)+5, 60, 20) withFont:[YZLabelFactory bigFont] withTextColor:[UIColor hcy_colorWithString:@"#fda803"]];
+        [_zaizhongLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self).offset(20);
+            make.top.equalTo(_lijuView.mas_bottom).offset(10);
+        }];
+        _zaizhongSubLabel = [self createLabelWithFont:[YZLabelFactory bigFont] withTextColor:[UIColor hcy_colorWithString:@"#fda803"]];
         [self.contentView addSubview:_zaizhongSubLabel];
-        _zaizhongdanweiBtn = [self createButtonwithFrame:CGRectMake(CGRectGetMaxX(_zaizhongLabel.frame)+3, CGRectGetMaxY(_lijuView.frame)+10, 25, 25) withImage:[UIImage imageNamed:@"载重图标"]];
+        [_zaizhongSubLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(_zaizhongLabel.mas_bottom).offset(5);
+            make.left.equalTo(_zaizhongLabel);
+        }];
+        UIImage * zaizhong = [[UIImage imageNamed:@"载重图标"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        _zaizhongdanweiBtn = [UIButton new];
         [self.contentView addSubview:_zaizhongdanweiBtn];
-        _zaizhongdanweiLabel = [self createLabelwithFrame:CGRectMake(CGRectGetMaxX(_zaizhongLabel.frame)+3, CGRectGetMaxY(_zaizhongdanweiBtn.frame)+5, 25, 20) withFont:[YZLabelFactory bigFont] withTextColor:[UIColor hcy_colorWithString:@"#333333"]];
-        _zaizhongdanweiLabel.textAlignment = NSTextAlignmentCenter;
+        [_zaizhongdanweiBtn setImage:zaizhong forState:UIControlStateNormal];
+        [_zaizhongdanweiBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(_lijuView.mas_bottom).offset(8);
+            make.left.equalTo(_zaizhongLabel.mas_right).offset(20);
+        }];
+        _zaizhongdanweiLabel = [self createLabelWithFont:[YZLabelFactory bigFont] withTextColor:[UIColor hcy_colorWithString:@"#333333"]];
         _zaizhongdanweiLabel.text = @"kg";
         [self.contentView addSubview:_zaizhongdanweiLabel];
-        _zaizhongProgress = [self createProgressViewwithFrame:CGRectMake(CGRectGetMaxX(_zaizhongdanweiBtn.frame)+10, CGRectGetMaxY(_lijuView.frame)+23, (SCREEN_WIDTH-CGRectGetMaxX(_lijudanweiBtn.frame)-30), 22) withProgress:0];
+        [_zaizhongdanweiLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(_zaizhongdanweiBtn.mas_bottom).offset(5);
+            make.left.equalTo(_zaizhongdanweiBtn);//.offset(2);
+            make.centerX.equalTo(_zaizhongdanweiBtn);
+        }];
+        _zaizhongProgress = [self createProgressViewProgress:0];
         [self.contentView addSubview:_zaizhongProgress];
-        _zaizhongView = [[UIView alloc]initWithFrame:CGRectMake(20, CGRectGetMaxY(_zaizhongSubLabel.frame)+10, SCREEN_WIDTH-40, 1)];
+        [_zaizhongProgress mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(_zaizhongdanweiBtn.mas_right).offset(25);
+            make.top.equalTo(_lijuView.mas_bottom).offset(20);
+            make.right.equalTo(self).offset(-20);
+            make.height.mas_equalTo(22);
+        }];
+        _zaizhongView = [UIView new];
         _zaizhongView.backgroundColor = [UIColor hcy_colorWithString:@"#e0e0e0"];
         [self.contentView addSubview:_zaizhongView];
-        _windLabel = [self createLabelwithFrame:CGRectMake(20, CGRectGetMaxY(_zaizhongView.frame)+15, 60, 20) withFont:[YZLabelFactory bigFont] withTextColor:[UIColor hcy_colorWithString:@"#333333"]];
+        [_zaizhongView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(_zaizhongSubLabel.mas_bottom).offset(5);
+            make.left.equalTo(_zaizhongSubLabel);
+            make.right.equalTo(self).offset(-20);
+            make.height.mas_equalTo(1);
+        }];
+        _windLabel = [self createLabelWithFont:[YZLabelFactory bigFont] withTextColor:[UIColor hcy_colorWithString:@"#333333"]];
         _windLabel.text = @"风速";
         [self.contentView addSubview:_windLabel];
-        _windSubLabel =  [self createLabelwithFrame:CGRectMake(20, CGRectGetMaxY(_windLabel.frame)+5, 60, 20) withFont:[YZLabelFactory bigFont] withTextColor:[UIColor hcy_colorWithString:@"#fda803"]];
+        [_windLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(_zaizhongView.mas_bottom).offset(10);
+            make.left.equalTo(self).offset(20);
+        }];
+        
+        _windSubLabel = [self createLabelWithFont:[YZLabelFactory bigFont] withTextColor:[UIColor hcy_colorWithString:@"#fda803"]];
         [self.contentView addSubview:_windSubLabel];
-        _winddanweiBtn = [self createButtonwithFrame:CGRectMake(CGRectGetMaxX(_windLabel.frame)+3, CGRectGetMaxY(_zaizhongView.frame)+10, 25, 25) withImage:[UIImage imageNamed:@"风速图标"]];
+        [_windSubLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(_windLabel.mas_bottom).offset(5);
+            make.left.equalTo(_windLabel);
+        }];
+        UIImage * wind = [[UIImage imageNamed:@"风速图标"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        _winddanweiBtn = [UIButton new];
+        [_winddanweiBtn setImage:wind forState:UIControlStateNormal];
         [self.contentView addSubview:_winddanweiBtn];
-        _winddanweiLabel = [self createLabelwithFrame:CGRectMake(CGRectGetMaxX(_windLabel.frame)+2, CGRectGetMaxY(_winddanweiBtn.frame)+5, 33, 20) withFont:[YZLabelFactory bigFont] withTextColor:[UIColor hcy_colorWithString:@"#333333"]];
+        [_winddanweiBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(_windLabel.mas_right).offset(20);
+            make.top.equalTo(_zaizhongView.mas_bottom).offset(8);
+        }];
+        _winddanweiLabel = [self createLabelWithFont:[YZLabelFactory bigFont] withTextColor:[UIColor hcy_colorWithString:@"#333333"]];
         _winddanweiLabel.text = @"m/s";
         [self.contentView addSubview:_winddanweiLabel];
-        _windProgress = [self createProgressViewwithFrame:CGRectMake(CGRectGetMaxX(_winddanweiBtn.frame)+10, CGRectGetMaxY(_zaizhongView.frame)+23, (SCREEN_WIDTH-CGRectGetMaxX(_lijudanweiBtn.frame)-30), 22) withProgress:0];
+        [_winddanweiLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(_winddanweiBtn.mas_bottom).offset(3);
+            make.left.equalTo(_winddanweiBtn).offset(-2);
+        }];
+        _windProgress = [self createProgressViewProgress:0];
         [self.contentView addSubview:_windProgress];
-        _fengsuView = [[UIView alloc]initWithFrame:CGRectMake(20, CGRectGetMaxY(_windSubLabel.frame)+10, SCREEN_WIDTH-40, 1)];
+        [_windProgress mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(_winddanweiBtn.mas_right).offset(25);
+            make.top.equalTo(_zaizhongView.mas_bottom).offset(18);
+            make.right.equalTo(self).offset(-20);
+            make.height.mas_equalTo(22);
+        }];
+        _fengsuView = [UIView new];
         _fengsuView.backgroundColor = [UIColor hcy_colorWithString:@"#e0e0e0"];
         [self.contentView addSubview:_fengsuView];
-        
-        _fuduLabel = [self createLabelwithFrame:CGRectMake(20, CGRectGetMaxY(_fengsuView.frame)+15, 60, 20) withFont:[YZLabelFactory bigFont] withTextColor:[UIColor hcy_colorWithString:@"#333333"]];
+        [_fengsuView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(_windSubLabel.mas_bottom).offset(5);
+            make.left.equalTo(_windLabel);
+            make.right.equalTo(self).offset(-20);
+            make.height.mas_equalTo(1);
+        }];
+        _fuduLabel = [self createLabelWithFont:[YZLabelFactory bigFont] withTextColor:[UIColor hcy_colorWithString:@"#333333"]];
         _fuduLabel.text = @"幅度";
         [self.contentView addSubview:_fuduLabel];
-        _fuduSubLabel = [self createLabelwithFrame:CGRectMake(20, CGRectGetMaxY(_fuduLabel.frame)+5, 60, 20) withFont:[YZLabelFactory bigFont] withTextColor:[UIColor hcy_colorWithString:@"#fda803"]];
-        //        _fuduSubLabel.text = @"7.9";
+        [_fuduLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(_fengsuView.mas_bottom).offset(10);
+            make.left.equalTo(self).offset(20);
+        }];
+        _fuduSubLabel = [self createLabelWithFont:[YZLabelFactory bigFont] withTextColor:[UIColor hcy_colorWithString:@"#fda803"]];
+        _fuduSubLabel.text = @"7.9";
         [self.contentView addSubview:_fuduSubLabel];
-        _fududanweiBtn = [self createButtonwithFrame:CGRectMake(CGRectGetMaxX(_fuduLabel.frame)+5, CGRectGetMaxY(_fengsuView.frame)+10, 25, 25) withImage:[UIImage imageNamed:@"幅度图标"]];
+        [_fuduSubLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(_fuduLabel.mas_bottom).offset(5);
+            make.left.equalTo(_fuduLabel);
+        }];
+        UIImage * fuduImg = [[UIImage imageNamed:@"幅度图标"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        _fududanweiBtn =[UIButton new];
+        [_fududanweiBtn setImage:fuduImg forState:UIControlStateNormal];
         [self.contentView addSubview:_fududanweiBtn];
-        _fududanweiLabel = [self createLabelwithFrame:CGRectMake(CGRectGetMaxX(_fuduLabel.frame)+3, CGRectGetMaxY(_fududanweiBtn.frame)+5, 25, 20) withFont:[YZLabelFactory bigFont] withTextColor:[UIColor hcy_colorWithString:@"#333333"]];
-        _fududanweiLabel.textAlignment = NSTextAlignmentCenter;
+        [_fududanweiBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(_fengsuView.mas_bottom).offset(8);
+            make.left.equalTo(_fuduLabel.mas_right).offset(20);
+        }];
+        _fududanweiLabel = [self createLabelWithFont:[YZLabelFactory bigFont] withTextColor:[UIColor hcy_colorWithString:@"#333333"]];
         _fududanweiLabel.text = @"m";
         [self.contentView addSubview:_fududanweiLabel];
-        _fuduProgress = [self createProgressViewwithFrame:CGRectMake(CGRectGetMaxX(_fududanweiBtn.frame)+10, CGRectGetMaxY(_fengsuView.frame)+23, (SCREEN_WIDTH-CGRectGetMaxX(_lijudanweiBtn.frame)-30), 22) withProgress:0.079];
+        [_fududanweiLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(_fududanweiBtn.mas_bottom).offset(3);
+            make.left.equalTo(_fududanweiBtn).offset(1);
+        }];
+        _fuduProgress = [self createProgressViewProgress:0];
         [self.contentView addSubview:_fuduProgress];
-        _fuduView = [[UIView alloc]initWithFrame:CGRectMake(20, CGRectGetMaxY(_fuduSubLabel.frame)+10, SCREEN_WIDTH-40, 1)];
+        [_fuduProgress mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(_fengsuView.mas_bottom).offset(18);
+            make.left.equalTo(_fududanweiBtn.mas_right).offset(25);
+            make.height.mas_offset(22);
+            make.right.equalTo(self).offset(-20);
+        }];
+        _fuduView = [[UIView alloc]init];
         _fuduView.backgroundColor = [UIColor hcy_colorWithString:@"#e0e0e0"];
         [self.contentView addSubview:_fuduView];
-        _gaoduLabel = [self createLabelwithFrame:CGRectMake(20, CGRectGetMaxY(_fuduView.frame)+15, 60, 20) withFont:[YZLabelFactory bigFont] withTextColor:[UIColor hcy_colorWithString:@"#333333"]];
+        [_fuduView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(_fuduSubLabel.mas_bottom).offset(5);
+            make.left.equalTo(_fuduSubLabel);
+            make.right.equalTo(self).offset(-20);
+            make.height.mas_equalTo(1);
+        }];
+        _gaoduLabel = [self createLabelWithFont:[YZLabelFactory bigFont] withTextColor:[UIColor hcy_colorWithString:@"#333333"]];
         _gaoduLabel.text = @"高度";
         [self.contentView addSubview:_gaoduLabel];
-        _gaoduSubLabel = [self createLabelwithFrame:CGRectMake(20, CGRectGetMaxY(_gaoduLabel.frame)+5, 60, 20) withFont:[YZLabelFactory bigFont] withTextColor:[UIColor hcy_colorWithString:@"#fda803"]];
-        //        _gaoduSubLabel.text = @"2.00";
+        [_gaoduLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(_fuduView.mas_bottom).offset(10);
+            make.left.equalTo(self).offset(20);
+        }];
+        
+        _gaoduSubLabel = [self createLabelWithFont:[YZLabelFactory bigFont] withTextColor:[UIColor hcy_colorWithString:@"#fda803"]];
         [self.contentView addSubview:_gaoduSubLabel];
-        _gaodudanweiBtn = [self createButtonwithFrame:CGRectMake(CGRectGetMaxX(_gaoduLabel.frame)+5, CGRectGetMaxY(_fuduView.frame)+10, 25, 25) withImage:[UIImage imageNamed:@"高度图标"]];
+        [_gaoduSubLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(_gaoduLabel.mas_bottom).offset(5);
+            make.left.equalTo(_gaoduLabel);
+        }];
+        UIImage * gaoduImg = [[UIImage imageNamed:@"高度图标"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        _gaodudanweiBtn = [UIButton new];
+        [_gaodudanweiBtn setImage:gaoduImg forState:UIControlStateNormal];
         [self.contentView addSubview:_gaodudanweiBtn];
-        _gaodudanweiLabel = [self createLabelwithFrame:CGRectMake(CGRectGetMaxX(_gaoduLabel.frame)+5, CGRectGetMaxY(_gaodudanweiBtn.frame)+5, 25, 20) withFont:[YZLabelFactory bigFont] withTextColor:[UIColor hcy_colorWithString:@"#333333"]];
-        _gaodudanweiLabel.textAlignment = NSTextAlignmentCenter;
+        [_gaodudanweiBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(_fuduView.mas_bottom).offset(8);
+            make.left.equalTo(_gaoduLabel.mas_right).offset(20);
+        }];
+        _gaodudanweiLabel = [self createLabelWithFont:[YZLabelFactory bigFont] withTextColor:[UIColor hcy_colorWithString:@"#333333"]];
         _gaodudanweiLabel.text = @"m";
         [self.contentView addSubview:_gaodudanweiLabel];
-        _gaoduProgress = [self createProgressViewwithFrame:CGRectMake(CGRectGetMaxX(_gaodudanweiBtn.frame)+10, CGRectGetMaxY(_fuduView.frame)+23, (SCREEN_WIDTH-CGRectGetMaxX(_lijudanweiBtn.frame)-30), 22) withProgress:0.2];
+        [_gaodudanweiLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(_gaodudanweiBtn.mas_bottom).offset(3);
+            make.centerX.equalTo(_gaodudanweiBtn);
+        }];
+        _gaoduProgress = [self createProgressViewProgress:0];
         [self.contentView addSubview:_gaoduProgress];
-        _gaoduView = [[UIView alloc]initWithFrame:CGRectMake(20, CGRectGetMaxY(_gaoduSubLabel.frame)+10, SCREEN_WIDTH-40, 1)];
+        [_gaoduProgress mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(_fuduView.mas_bottom).offset(18);
+            make.left.equalTo(_gaodudanweiBtn.mas_right).offset(25);
+            make.right.equalTo(self).offset(-20);
+            make.height.mas_equalTo(22);
+        }];
+        _gaoduView = [UIView new];
         _gaoduView.backgroundColor = [UIColor hcy_colorWithString:@"#e0e0e0"];
         [self.contentView addSubview:_gaoduView];
-        _jiaoduLabel = [self createLabelwithFrame:CGRectMake(20, CGRectGetMaxY(_gaoduView.frame)+15, 60, 20) withFont:[YZLabelFactory bigFont] withTextColor:[UIColor hcy_colorWithString:@"#333333"]];
+        [_gaoduView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(_gaoduSubLabel.mas_bottom).offset(5);
+            make.left.equalTo(_gaoduSubLabel);
+            make.right.equalTo(self).offset(-20);
+            make.height.mas_equalTo(1);
+        }];
+        _jiaoduLabel = [self createLabelWithFont:[YZLabelFactory bigFont] withTextColor:[UIColor hcy_colorWithString:@"#333333"]];
         _jiaoduLabel.text = @"角度";
         [self.contentView addSubview:_jiaoduLabel];
-        _jiaoduSubLabel = [self createLabelwithFrame:CGRectMake(20, CGRectGetMaxY(_jiaoduLabel.frame)+5, 60, 20) withFont:[YZLabelFactory bigFont] withTextColor:[UIColor hcy_colorWithString:@"#fda803"]];
-        //        _jiaoduSubLabel.text = @"0.00";
+        [_jiaoduLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(_gaoduView.mas_bottom).offset(10);
+            make.left.equalTo(self).offset(20);
+        }];
+        _jiaoduSubLabel = [self createLabelWithFont:[YZLabelFactory bigFont] withTextColor:[UIColor hcy_colorWithString:@"#fda803"]];
         [self.contentView addSubview:_jiaoduSubLabel];
-        _jiaodudanweiBtn = [self createButtonwithFrame:CGRectMake(CGRectGetMaxX(_jiaoduLabel.frame)+5, CGRectGetMaxY(_gaoduView.frame)+10, 25, 25) withImage:[UIImage imageNamed:@"角度图标"]];
+        [_jiaoduSubLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(_jiaoduLabel.mas_bottom).offset(5);
+            make.left.equalTo(_jiaoduLabel);
+        }];
+        UIImage * jiaoduImg = [[UIImage imageNamed:@"角度图标"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        _jiaodudanweiBtn = [UIButton new];
         [self.contentView addSubview:_jiaodudanweiBtn];
-        _jiaodudanweiLabel = [self createLabelwithFrame:CGRectMake(CGRectGetMaxX(_jiaoduLabel.frame)+5, CGRectGetMaxY(_jiaodudanweiBtn.frame)+5, 25, 20) withFont:[YZLabelFactory bigFont] withTextColor:[UIColor hcy_colorWithString:@"#333333"]];
-        _jiaodudanweiLabel.textAlignment = NSTextAlignmentCenter;
+        [_jiaodudanweiBtn setImage:jiaoduImg forState:UIControlStateNormal];
+        [_jiaodudanweiBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(_gaoduView.mas_bottom).offset(8);
+            make.left.equalTo(_jiaoduLabel.mas_right).offset(20);
+        }];
+        _jiaodudanweiLabel = [self createLabelWithFont:[YZLabelFactory bigFont] withTextColor:[UIColor hcy_colorWithString:@"#333333"]];
         _jiaodudanweiLabel.text = @"o";
         [self.contentView addSubview:_jiaodudanweiLabel];
-        _jiaoduProgress = [self createProgressViewwithFrame:CGRectMake(CGRectGetMaxX(_jiaodudanweiBtn.frame)+10, CGRectGetMaxY(_gaoduView.frame)+23, (SCREEN_WIDTH-CGRectGetMaxX(_lijudanweiBtn.frame)-30), 22) withProgress:0];
+        [_jiaodudanweiLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(_jiaodudanweiBtn.mas_bottom).offset(5);
+            make.centerX.equalTo(_jiaodudanweiBtn);
+        }];
+        _jiaoduProgress = [self createProgressViewProgress:0];
         [self.contentView addSubview:_jiaoduProgress];
-        _jiaoduView = [[UIView alloc]initWithFrame:CGRectMake(20, CGRectGetMaxY(_jiaoduSubLabel.frame)+5, SCREEN_WIDTH-40, 1)];
+        [_jiaoduProgress mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(_gaoduView.mas_bottom).offset(18);
+            make.left.equalTo(_jiaodudanweiBtn.mas_right).offset(25);
+            make.right.equalTo(self).offset(-20);
+            make.height.mas_equalTo(22);
+        }];
+        _jiaoduView = [UIView new];
         _jiaoduView.backgroundColor = [UIColor hcy_colorWithString:@"#e0e0e0"];
         [self.contentView addSubview:_jiaoduView];
+        [_jiaoduView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(_jiaoduSubLabel.mas_bottom).offset(5);
+            make.width.equalTo(self);
+            make.height.mas_equalTo(1);
+        }];
         
     }
 }
 /**创建进度条*/
--(LDProgressView *)createProgressViewwithFrame:(CGRect)frame withProgress:(CGFloat)progress
+-(LDProgressView *)createProgressViewProgress:(CGFloat)progress
 {
-    LDProgressView * progressView = [[LDProgressView alloc]initWithFrame:frame];
+    LDProgressView * progressView = [LDProgressView new];
     progressView.color = [UIColor hcy_colorWithString:@"#4ac120"];
     progressView.background = [UIColor hcy_colorWithString:@"#d6f5cc"];
     progressView.flat = @YES;
-    progressView.borderRadius = @2;
+    progressView.borderRadius = @1;
     progressView.showBackgroundInnerShadow = @NO;
     progressView.progress = progress;
     progressView.type = LDProgressSolid;
@@ -395,15 +752,17 @@
 -(UIButton *)createButtonwithFrame:(CGRect)frame  withImage:(UIImage *)image
 {
     UIButton * button = [[UIButton alloc]initWithFrame:frame];
-    button.titleLabel.font = [UIFont systemFontOfSize:16];
+    button.titleLabel.font = [YZLabelFactory bigFont];
     [button setTitleColor:[UIColor blackColor] forState:0];
     [button setImage:image forState:0];
     return button;
 }
--(UILabel *)createLabelwithFrame:(CGRect)frame withFont:(UIFont *)font withTextColor:(UIColor *)color
+-(UILabel *)createLabelWithFont:(UIFont *)font withTextColor:(UIColor *)color
 {
-    UILabel * label = [[UILabel alloc]initWithFrame:frame];
+    UILabel * label = [UILabel new];
     label.font = font;
+    //    label.adjustsFontSizeToFitWidth = YES;
+    label.numberOfLines = 0;
     label.textColor = color;
     return label;
 }

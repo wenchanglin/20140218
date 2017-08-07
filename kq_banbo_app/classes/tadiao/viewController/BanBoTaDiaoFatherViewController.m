@@ -133,14 +133,24 @@
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     if(indexPath.section==0)
     {
-        return 260;
+        if (IS_IPHONE_5)
+        {
+            return 240;
+        }
+        else
+        {
+            return 260;
+        }
     }
     else if(indexPath.section ==1)
     {
-        return 550;
+        if (IS_IPHONE_5) {
+            return 500;
+        }
+        else
+            return 520;
     }
     else
         return 150;
@@ -150,19 +160,5 @@
     [super viewDidDisappear: animated];
     [_tableview removeFromSuperview];
 }
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
 
 @end

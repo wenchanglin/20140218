@@ -30,7 +30,7 @@
     else if ([((NSNumber *)[result objectForKey:@"code"])intValue]==-1)
     {
         //completion(result[@"message"],nil);
-        //[HCYUtil showErrorWithStr:responseObject[@"message"]];
+//        [HCYUtil showErrorWithStr:result[@"message"]];
     }
 }
 -(void)postTaDiaoDataWithSheBeiId:(NSNumber *)shibeiId completion:(BanBoTaDiaoCompletionBlock)completion
@@ -43,10 +43,10 @@
     NSString * string2 = [NSString stringWithFormat:@"%@td/jsonGetTowerCraneData.html",huanjingtou];
     NSDictionary * param = @{@"deviceId":shibeiId};
     NSDictionary * result = [manager syncPOST:string2 parameters:param task:NULL error:&error];
-    //NSLog(@"2:%@",result);
+//    NSLog(@"2:%@",result);
     if([((NSNumber *)[result objectForKey:@"code"])intValue]==1)
     {
-//         NSLog(@"塔吊实时数据:%@",result);
+      //   NSLog(@"塔吊实时数据:%@",result);
         NSDictionary * dict = result[@"data"];
         completion(dict,nil);
     }

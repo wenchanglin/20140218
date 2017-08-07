@@ -44,13 +44,10 @@
             {
                 NSDictionary * dci = @{@"equipmentName":@"",@"pm2p5Msg":@"优秀",@"pm10Msg":@"优秀",@"pm2p5":@0,@"pm10":@"0",@"rtdId":@0,@"humi":@"0",@"tsp":@0,@"temp":@"0",@"ws":@"0",@"wdir":@"0",@"atm":@0,@"nvh":@0,@"createTime":@"0",@"dataTime":@"0",@"equipmentId":_HuanJid};
                 _modelsef = [BanBoHuanJModel mj_objectWithKeyValues:dci];
-
             }
-            
         }];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1* NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
              [_tableview.mj_header endRefreshing];
-            
         });
        
         [_tableview reloadData];

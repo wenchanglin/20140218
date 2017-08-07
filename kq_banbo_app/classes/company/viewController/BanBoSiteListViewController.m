@@ -31,7 +31,26 @@
     self.tableViewDataArrM=[NSMutableArray array];
     [self setSubviews];
     [self setData];
+    UIButton *logoutBtn=[UIButton new];
+    logoutBtn.titleLabel.font=[UIFont systemFontOfSize:[UIFont systemFontSize]];
+    [logoutBtn setTitle:@"注销" forState:UIControlStateNormal];
+    [logoutBtn sizeToFit];
+    [logoutBtn addTarget:self action:@selector(logoutBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *rightItem=[[UIBarButtonItem alloc] initWithCustomView:logoutBtn];
+    self.navigationItem.rightBarButtonItem=rightItem;
+    UIButton *leftBtn=[UIButton new];
+    leftBtn.titleLabel.font=[UIFont systemFontOfSize:[UIFont systemFontSize]];
+    [leftBtn setTitle:@"" forState:UIControlStateNormal];
+    [leftBtn sizeToFit];
+    UIBarButtonItem *leftItem=[[UIBarButtonItem alloc] initWithCustomView:leftBtn];
+    self.navigationItem.leftBarButtonItem=leftItem;
+
     
+}
+-(void)logoutBtnClick:(UIButton *)btn{
+    [[BanBoUserInfoManager sharedInstance] logoutWithCompletion:nil];
+    [[NSUserDefaults standardUserDefaults]removeObjectForKey:@"username"];
+    [[NSUserDefaults standardUserDefaults]removeObjectForKey:@"password"];
 }
 -(void)setSubviews{
     [self.view addSubview:self.companyInfoView];
@@ -39,6 +58,7 @@
 }
 -(void)setData{
     YZTitleView *titleView=[YZTitleView banbo_inst];
+     titleView.width=self.view.width;
     [titleView showInNaviItem:self.navigationItem];
     
     BanBoLoginInfoModel *info=[[BanBoUserInfoManager sharedInstance] currentLoginInfo];

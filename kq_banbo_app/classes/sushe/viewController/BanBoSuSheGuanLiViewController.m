@@ -86,7 +86,8 @@
 #pragma mark - 初始化数据
 -(NSArray *)itemArr
 {
-    if (!_itemArr) {
+    if (!_itemArr)
+    {
         NSMutableArray * itemArray = [NSMutableArray array];
         [itemArray addObject:[self itemWithTitle:@"宿舍管理" imageName:@"susheguanli" type:BanBoShuSheTypeSSGL]];
         [itemArray addObject:[self itemWithTitle:@"用电管理" imageName:@"yongdianguanli" type:BanBoShuSheTypeYDGL]];

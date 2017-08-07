@@ -42,7 +42,6 @@
 
 - (void)addData
 {
-
     [[BanBoVRManager sharedInstance]postVRTongJiWithProjectId:self.project.projectId completion:^(id data, NSNumber *allrow, NSError *error) {
         BanBoVRTongJiModel * model = [BanBoVRTongJiModel mj_objectWithKeyValues:data];
         [_dataSource addObject:model];
